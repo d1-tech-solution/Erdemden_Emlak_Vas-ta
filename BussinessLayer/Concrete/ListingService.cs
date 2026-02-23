@@ -1,5 +1,6 @@
 using BussinessLayer.Abstract;
 using Core.DTOs.Common;
+using Core.DTOs.DocumentDtos;
 using Core.DTOs.ListingDtos;
 using Core.DTOs.VehicleDtos;
 using Core.DTOs.RealEstateDtos;
@@ -283,6 +284,7 @@ public class ListingService : IListingService
                 .ThenInclude(v => v!.Package)
             .Include(l => l.RealEstate)
                 .ThenInclude(r => r!.HousingType)
+            .Include(l => l.NotaryDocuments)
             .FirstOrDefaultAsync(l => l.Id == id);
 
         if (listing == null)
@@ -319,6 +321,7 @@ public class ListingService : IListingService
                 .ThenInclude(v => v!.Package)
             .Include(l => l.RealEstate)
                 .ThenInclude(r => r!.HousingType)
+            .Include(l => l.NotaryDocuments)
             .AsQueryable();
 
         // Filtreleme
@@ -461,6 +464,30 @@ public class ListingService : IListingService
         if (updateDto.BuyerReason.HasValue) listing.BuyerReason = updateDto.BuyerReason;
 
         _unitOfWork.Repository<Listing>().Update(listing);
+
+        // Noter belgeleri güncelle
+        if (updateDto.NotaryDocuments != null)
+        {
+            var existingDocs = await _unitOfWork.Repository<NotaryDocument>()
+                .Query().Where(d => d.ListingId == id).ToListAsync();
+            foreach (var doc in existingDocs)
+                _unitOfWork.Repository<NotaryDocument>().Delete(doc);
+
+            foreach (var docDto in updateDto.NotaryDocuments)
+            {
+                var base64 = docDto.Base64Data.Contains(",")
+                    ? docDto.Base64Data.Split(',')[1]
+                    : docDto.Base64Data;
+                await _unitOfWork.Repository<NotaryDocument>().AddAsync(new NotaryDocument
+                {
+                    ListingId = id,
+                    Name = docDto.FileName,
+                    ContentType = docDto.ContentType,
+                    Data = Convert.FromBase64String(base64)
+                });
+            }
+        }
+
         await _unitOfWork.SaveChangesAsync();
 
         return await GetListingByIdAsync(id);
@@ -729,7 +756,14 @@ public class ListingService : IListingService
                 SoldToPhone = listing.SoldToPhone,
                 SoldToEmail = listing.SoldToEmail,
                 BuyerReason = listing.BuyerReason
-            }
+            },
+            NotaryDocuments = listing.NotaryDocuments?.Select(d => new DocumentDto
+            {
+                Id = d.Id,
+                Name = d.Name,
+                ContentType = d.ContentType ?? string.Empty,
+                DownloadUrl = $"/api/listings/{listing.Id}/notary-documents/{d.Id}"
+            }).ToList() ?? new List<DocumentDto>()
         };
     }
 

@@ -187,6 +187,29 @@ public class ListingsController : ControllerBase
     }
 
     /// <summary>
+    /// Noter belgesi indir
+    /// </summary>
+    [Authorize(Policy = "AdminOnly")]
+    [HttpGet("{id:guid}/notary-documents/{docId:guid}")]
+    public async Task<IActionResult> DownloadNotaryDocument(Guid id, Guid docId)
+    {
+        var doc = await _unitOfWork.Repository<NotaryDocument>()
+            .Query()
+            .FirstOrDefaultAsync(d => d.Id == docId && d.ListingId == id);
+
+        if (doc?.Data == null)
+        {
+            return NotFound(ApiResponseDto<object>.FailResponse("Belge bulunamadı"));
+        }
+
+        return new FileContentResult(doc.Data, doc.ContentType ?? "application/octet-stream")
+        {
+            FileDownloadName = doc.Name,
+            EnableRangeProcessing = true
+        };
+    }
+
+    /// <summary>
     /// Ekspertiz raporu indir (PDF)
     /// </summary>
     [HttpGet("{id:guid}/expertise-report")]

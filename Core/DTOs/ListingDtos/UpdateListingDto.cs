@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Core.DTOs.DocumentDtos;
 using EntityLayer.Entities;
 
 namespace Core.DTOs.ListingDtos;
@@ -46,4 +47,7 @@ public class UpdateListingDto
     public string? SoldToEmail { get; set; }
     [EnumDataType(typeof(BuyerReason), ErrorMessage = "Geçersiz alıcı nedeni değeri")]
     public BuyerReason? BuyerReason { get; set; }
+
+    // Noter belgeleri
+    public List<UploadDocumentDto>? NotaryDocuments { get; set; }
 }

@@ -1,4 +1,5 @@
 using Core.DTOs.Common;
+using Core.DTOs.DocumentDtos;
 using Core.DTOs.ImageDtos;
 using Core.DTOs.VehicleDtos;
 using Core.DTOs.RealEstateDtos;
@@ -39,4 +40,7 @@ public class ListingDto
 
     // Satış bilgileri (Admin için)
     public ListingSaleInfoDto? SaleInfo { get; set; }
+
+    // Noter belgeleri
+    public List<DocumentDto> NotaryDocuments { get; set; } = new();
 }
