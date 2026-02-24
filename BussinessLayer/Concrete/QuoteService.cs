@@ -85,6 +85,19 @@ public class QuoteService : IQuoteService
 
             await _unitOfWork.CommitTransactionAsync();
 
+            // Admin'e yeni teklif bildirimi gönder
+            try
+            {
+                var vehicleInfo = $"{quoteRequest.Year} {quoteRequest.Brand} {quoteRequest.Model} - {quoteRequest.Plate}";
+                var customerName = $"{quoteRequest.FirstName} {quoteRequest.LastName}";
+                await _emailService.SendNewQuoteNotificationToAdminAsync(
+                    customerName, vehicleInfo, quoteRequest.Phone, quoteRequest.Email);
+            }
+            catch (Exception)
+            {
+                // E-posta hatası teklif oluşturmayı engellemesin
+            }
+
             // Response DTO oluştur
             var responseDto = MapToDto(quoteRequest);
             return ApiResponseDto<QuoteRequestDto>.SuccessResponse(responseDto, "Teklif talebiniz başarıyla alındı.");
@@ -364,6 +377,19 @@ public class QuoteService : IQuoteService
 
         _unitOfWork.Repository<QuoteRequest>().Update(quote);
         await _unitOfWork.SaveChangesAsync();
+
+        // Admin'e kabul/red bildirimi gönder
+        try
+        {
+            var vehicleInfo = $"{quote.Year} {quote.Brand} {quote.Model} - {quote.Plate}";
+            var customerName = $"{quote.FirstName} {quote.LastName}";
+            await _emailService.SendQuoteResponseNotificationToAdminAsync(
+                customerName, vehicleInfo, dto.Accepted);
+        }
+        catch (Exception)
+        {
+            // E-posta hatası yanıt işlemini engellemesin
+        }
 
         var statusText = dto.Accepted ? "kabul edildi" : "reddedildi";
         var responseDto = MapToDto(quote);
