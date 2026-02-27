@@ -8,16 +8,19 @@ namespace Core.DTOs.ImageDtos;
 public class UploadImageDto
 {
     /// <summary>
-    /// Base64 encoded görsel verisi
+    /// Mevcut resmin ID'si (varsa base64 gerekmez, resim korunur)
     /// </summary>
-    [Required(ErrorMessage = "Görsel verisi gereklidir")]
-    public string Base64Data { get; set; } = string.Empty;
+    public Guid? ExistingImageId { get; set; }
 
     /// <summary>
-    /// Dosya adı (uzantı dahil)
+    /// Base64 encoded görsel verisi (yeni resim için)
     /// </summary>
-    [Required(ErrorMessage = "Dosya adı gereklidir")]
-    public string FileName { get; set; } = string.Empty;
+    public string? Base64Data { get; set; }
+
+    /// <summary>
+    /// Dosya adı (uzantı dahil, yeni resim için)
+    /// </summary>
+    public string? FileName { get; set; }
 
     /// <summary>
     /// Sıralama (opsiyonel)

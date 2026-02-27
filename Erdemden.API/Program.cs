@@ -109,6 +109,12 @@ builder.Services.AddCors(options =>
     });
 });
 
+// ==================== Response Compression ====================
+builder.Services.AddResponseCompression(options =>
+{
+    options.EnableForHttps = true;
+});
+
 // ==================== Controllers & Swagger ====================
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -149,6 +155,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseResponseCompression();
 
 app.UseCors("AllowFrontend");
 

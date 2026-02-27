@@ -210,6 +210,40 @@ public class ListingsController : ControllerBase
     }
 
     /// <summary>
+    /// İlan görseli serve et (binary)
+    /// </summary>
+    [HttpGet("{id:guid}/images/{imageId:guid}")]
+    [ResponseCache(Duration = 86400, Location = ResponseCacheLocation.Any)]
+    public async Task<IActionResult> GetImage(Guid id, Guid imageId)
+    {
+        var image = await _unitOfWork.Repository<ListingImage>()
+            .Query()
+            .Where(i => i.Id == imageId && i.ListingId == id)
+            .Select(i => new { i.Base64Data, i.MimeType, i.ImageUrl })
+            .FirstOrDefaultAsync();
+
+        if (image == null)
+        {
+            return NotFound();
+        }
+
+        // Base64 varsa binary olarak döndür
+        if (!string.IsNullOrEmpty(image.Base64Data) && !string.IsNullOrEmpty(image.MimeType))
+        {
+            var bytes = Convert.FromBase64String(image.Base64Data);
+            return File(bytes, image.MimeType);
+        }
+
+        // Base64 yoksa URL'e redirect
+        if (!string.IsNullOrEmpty(image.ImageUrl))
+        {
+            return Redirect(image.ImageUrl);
+        }
+
+        return NotFound();
+    }
+
+    /// <summary>
     /// Ekspertiz raporu indir (PDF)
     /// </summary>
     [HttpGet("{id:guid}/expertise-report")]
