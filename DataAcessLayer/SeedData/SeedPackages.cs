@@ -380,6 +380,14 @@ namespace DataAcessLayer.SeedData
                     "Cool", "Comfort", "Elegance", "Premium",
                     "Concept", "Concept Plus", "Dream", "GT-Line",
                     "Style", "Business Line"
+                } },
+
+                // ==================== Peugeot ====================
+                { "Boxer", new[] {
+                    "L1H1", "L2H1", "L2H2", "L3H2", "L3H3", "L4H2", "L4H3",
+                    "Premium", "Pro", "Asphalt", "Grip",
+                    "BlueHDi 120", "BlueHDi 140", "BlueHDi 160",
+                    "Minibüs", "Kamyonet", "Şasi Kabin"
                 } }
             };
 
@@ -526,7 +534,10 @@ namespace DataAcessLayer.SeedData
                 ("Kia", "Rio", new[] { "Cool", "Comfort", "Elegance", "Premium", "Concept", "Concept Plus", "Dream", "Style" }),
                 ("Kia", "Ceed", new[] { "Cool", "Comfort", "Elegance", "Premium", "Concept", "Concept Plus", "Dream", "GT-Line", "Style", "Business Line" }),
                 ("Kia", "EV6", new[] { "Air", "Wind", "Earth", "GT-Line", "GT", "Long Range", "Standard Range" }),
-                ("Kia", "Sportage", new[] { "Cool", "Comfort", "Elegance", "Premium", "Concept", "Concept Plus", "Dream", "GT-Line", "Style", "Business Line" })
+                ("Kia", "Sportage", new[] { "Cool", "Comfort", "Elegance", "Premium", "Concept", "Concept Plus", "Dream", "GT-Line", "Style", "Business Line" }),
+
+                // Peugeot
+                ("Peugeot", "Boxer", new[] { "L1H1", "L2H1", "L2H2", "L3H2", "L3H3", "L4H2", "L4H3", "Premium", "Pro", "Asphalt", "Grip", "BlueHDi 120", "BlueHDi 140", "BlueHDi 160", "Minibüs", "Kamyonet", "Şasi Kabin" })
             };
 
             var added = false;
