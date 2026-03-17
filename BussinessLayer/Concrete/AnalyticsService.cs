@@ -36,7 +36,7 @@ public class AnalyticsService : IAnalyticsService
                 .FromFile(_settings.CredentialsFilePath)
                 .CreateScoped("https://www.googleapis.com/auth/analytics.readonly");
 
-            var service = new BetaAnalyticsDataService(new BaseClientService.Initializer
+            var service = new AnalyticsDataService(new BaseClientService.Initializer
             {
                 HttpClientInitializer = credential,
                 ApplicationName = "ErdemdenAnalytics"
@@ -94,7 +94,7 @@ public class AnalyticsService : IAnalyticsService
     }
 
     private async Task<List<DailyMetricRaw>> RunDailyMetricsReport(
-        BetaAnalyticsDataService service, string propertyId, string startDate, string endDate)
+        AnalyticsDataService service, string propertyId, string startDate, string endDate)
     {
         var request = new RunReportRequest
         {
@@ -133,14 +133,14 @@ public class AnalyticsService : IAnalyticsService
     }
 
     private async Task<List<TrafficSourceDto>> RunTrafficSourcesReport(
-        BetaAnalyticsDataService service, string propertyId, string startDate, string endDate)
+        AnalyticsDataService service, string propertyId, string startDate, string endDate)
     {
         var request = new RunReportRequest
         {
             DateRanges = new[] { new DateRange { StartDate = startDate, EndDate = endDate } },
             Dimensions = new[] { new Dimension { Name = "sessionSource" } },
             Metrics = new[] { new Metric { Name = "sessions" } },
-            OrderBys = new[] { new OrderBy { Metric = new OrderBy.MetricOrderBy { MetricName = "sessions" }, Desc = true } },
+            OrderBys = new[] { new OrderBy { Metric = new MetricOrderBy { MetricName = "sessions" }, Desc = true } },
             Limit = 10
         };
 
@@ -166,7 +166,7 @@ public class AnalyticsService : IAnalyticsService
     }
 
     private async Task<List<PopularPageDto>> RunPopularPagesReport(
-        BetaAnalyticsDataService service, string propertyId, string startDate, string endDate)
+        AnalyticsDataService service, string propertyId, string startDate, string endDate)
     {
         var request = new RunReportRequest
         {
@@ -177,7 +177,7 @@ public class AnalyticsService : IAnalyticsService
                 new Dimension { Name = "pageTitle" }
             },
             Metrics = new[] { new Metric { Name = "screenPageViews" } },
-            OrderBys = new[] { new OrderBy { Metric = new OrderBy.MetricOrderBy { MetricName = "screenPageViews" }, Desc = true } },
+            OrderBys = new[] { new OrderBy { Metric = new MetricOrderBy { MetricName = "screenPageViews" }, Desc = true } },
             Limit = 10
         };
 
@@ -200,14 +200,14 @@ public class AnalyticsService : IAnalyticsService
     }
 
     private async Task<List<DeviceBreakdownDto>> RunDeviceBreakdownReport(
-        BetaAnalyticsDataService service, string propertyId, string startDate, string endDate)
+        AnalyticsDataService service, string propertyId, string startDate, string endDate)
     {
         var request = new RunReportRequest
         {
             DateRanges = new[] { new DateRange { StartDate = startDate, EndDate = endDate } },
             Dimensions = new[] { new Dimension { Name = "deviceCategory" } },
             Metrics = new[] { new Metric { Name = "activeUsers" } },
-            OrderBys = new[] { new OrderBy { Metric = new OrderBy.MetricOrderBy { MetricName = "activeUsers" }, Desc = true } }
+            OrderBys = new[] { new OrderBy { Metric = new MetricOrderBy { MetricName = "activeUsers" }, Desc = true } }
         };
 
         var response = await service.Properties.RunReport(request, propertyId).ExecuteAsync();
