@@ -29,6 +29,9 @@ builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection(JwtSett
 // ==================== Email Settings ====================
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection(EmailSettings.SectionName));
 
+// ==================== Google Analytics Settings ====================
+builder.Services.Configure<GoogleAnalyticsSettings>(builder.Configuration.GetSection(GoogleAnalyticsSettings.SectionName));
+
 var jwtSettings = builder.Configuration.GetSection(JwtSettings.SectionName).Get<JwtSettings>()!;
 
 // ==================== Authentication ====================
@@ -92,6 +95,8 @@ builder.Services.AddScoped<IListingService, ListingService>();
 builder.Services.AddScoped<IQuoteService, QuoteService>();
 builder.Services.AddScoped<IFavoriteService, FavoriteService>();
 builder.Services.AddScoped<ISiteContentService, SiteContentService>();
+builder.Services.AddMemoryCache();
+builder.Services.AddScoped<IAnalyticsService, AnalyticsService>();
 
 // ==================== CORS ====================
 builder.Services.AddCors(options =>

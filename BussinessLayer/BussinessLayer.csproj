@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <PackageReference Include="Google.Apis.AnalyticsData.v1beta" Version="1.68.0.3608" />
     <PackageReference Include="Google.Apis.Auth" Version="1.73.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.2" />
