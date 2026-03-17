@@ -1256,6 +1256,17 @@ namespace DataAcessLayer.SeedData
                 { "Partner", new[] { "Active", "Allure", "Premium", "Tepee", "1.6 HDi", "1.6 VTi", "Cargo" } },
                 { "Expert", new[] { "Premium", "Pro", "Avantage", "L1", "L2", "L3", "1.5 BlueHDi", "2.0 BlueHDi", "Cargo", "Kombi" } },
                 { "Traveller", new[] { "Active", "Allure", "Business", "VIP", "L2", "L3", "1.5 BlueHDi", "2.0 BlueHDi" } },
+                { "108", new[] { "Active", "Allure", "Style", "Top!", "1.0 VTi", "1.2 PureTech" } },
+                { "206", new[] { "XR", "XS", "XT", "Premium", "Quiksilver", "1.4", "1.4 HDi", "1.6", "1.6 HDi", "2.0 HDi", "CC", "SW" } },
+                { "207", new[] { "Comfort", "Premium", "Sportium", "Envy", "1.4", "1.4 HDi", "1.6", "1.6 HDi", "1.6 THP", "CC", "SW" } },
+                { "307", new[] { "XR", "XS", "XT", "Premium", "Sportium", "1.4", "1.4 HDi", "1.6", "1.6 HDi", "2.0", "2.0 HDi" } },
+                { "407", new[] { "Comfort", "Premium", "Executive", "Feline", "ST", "1.6 HDi", "2.0", "2.0 HDi", "2.2", "2.2 HDi", "3.0 V6" } },
+                { "408", new[] { "Active", "Allure", "Allure Pack", "GT", "GT Pack", "1.2 PureTech", "1.5 BlueHDi", "PHEV" } },
+                { "e-208", new[] { "Active", "Allure", "Allure Pack", "GT", "GT Pack", "50 kWh" } },
+                { "e-2008", new[] { "Active", "Allure", "Allure Pack", "GT", "GT Pack", "50 kWh", "54 kWh" } },
+                { "307 SW", new[] { "XR", "XS", "XT", "Premium", "1.6", "1.6 HDi", "2.0", "2.0 HDi" } },
+                { "407 SW", new[] { "Comfort", "Premium", "Executive", "Feline", "1.6 HDi", "2.0", "2.0 HDi", "2.2", "2.2 HDi" } },
+                { "Bipper", new[] { "Comfort", "Premium", "Tepee", "1.3 HDi", "1.4 HDi", "Cargo" } },
 
                 // ==================== SEAT ====================
                 // Hatchback
@@ -1778,6 +1789,17 @@ namespace DataAcessLayer.SeedData
                 ("Peugeot", "Partner", new[] { "Active", "Allure", "Premium", "Tepee", "1.6 HDi", "1.6 VTi", "Cargo" }),
                 ("Peugeot", "Expert", new[] { "Premium", "Pro", "Avantage", "L1", "L2", "L3", "1.5 BlueHDi", "2.0 BlueHDi", "Cargo", "Kombi" }),
                 ("Peugeot", "Traveller", new[] { "Active", "Allure", "Business", "VIP", "L2", "L3", "1.5 BlueHDi", "2.0 BlueHDi" }),
+                ("Peugeot", "108", new[] { "Active", "Allure", "Style", "Top!", "1.0 VTi", "1.2 PureTech" }),
+                ("Peugeot", "206", new[] { "XR", "XS", "XT", "Premium", "Quiksilver", "1.4", "1.4 HDi", "1.6", "1.6 HDi", "2.0 HDi", "CC", "SW" }),
+                ("Peugeot", "207", new[] { "Comfort", "Premium", "Sportium", "Envy", "1.4", "1.4 HDi", "1.6", "1.6 HDi", "1.6 THP", "CC", "SW" }),
+                ("Peugeot", "307", new[] { "XR", "XS", "XT", "Premium", "Sportium", "1.4", "1.4 HDi", "1.6", "1.6 HDi", "2.0", "2.0 HDi" }),
+                ("Peugeot", "407", new[] { "Comfort", "Premium", "Executive", "Feline", "ST", "1.6 HDi", "2.0", "2.0 HDi", "2.2", "2.2 HDi", "3.0 V6" }),
+                ("Peugeot", "408", new[] { "Active", "Allure", "Allure Pack", "GT", "GT Pack", "1.2 PureTech", "1.5 BlueHDi", "PHEV" }),
+                ("Peugeot", "e-208", new[] { "Active", "Allure", "Allure Pack", "GT", "GT Pack", "50 kWh" }),
+                ("Peugeot", "e-2008", new[] { "Active", "Allure", "Allure Pack", "GT", "GT Pack", "50 kWh", "54 kWh" }),
+                ("Peugeot", "307 SW", new[] { "XR", "XS", "XT", "Premium", "1.6", "1.6 HDi", "2.0", "2.0 HDi" }),
+                ("Peugeot", "407 SW", new[] { "Comfort", "Premium", "Executive", "Feline", "1.6 HDi", "2.0", "2.0 HDi", "2.2", "2.2 HDi" }),
+                ("Peugeot", "Bipper", new[] { "Comfort", "Premium", "Tepee", "1.3 HDi", "1.4 HDi", "Cargo" }),
 
                 // ==================== SEAT ====================
                 ("Seat", "Ibiza", new[] { "Reference", "Style", "Xcellence", "FR", "FR Sport", "Cupra", "1.0 TSI", "1.0 EcoTSI", "1.5 TSI", "1.6 TDI" }),

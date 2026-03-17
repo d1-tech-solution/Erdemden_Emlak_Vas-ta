@@ -38,7 +38,7 @@ namespace DataAcessLayer.SeedData
             "500X", "Freemont",                                          // Fiat SUV
             "Karoq", "Kodiaq",                                           // Skoda SUV
             "Mokka", "Mokka-e", "Grandland", "Crossland",               // Opel SUV
-            "2008", "3008", "5008",                                      // Peugeot SUV
+            "2008", "3008", "5008", "e-2008",                              // Peugeot SUV
             "Ateca", "Tarraco",                                          // Seat SUV
             "Formentor", "Terramar",                                     // Cupra SUV
             "T10X",                                                      // Togg SUV
@@ -78,7 +78,7 @@ namespace DataAcessLayer.SeedData
             "Linea", "Albea", "Tipo Sedan", "Marea",             // Fiat Sedan
             "Octavia", "Superb",                                     // Skoda Sedan
             "Insignia", "Astra Sedan",                              // Opel Sedan
-            "301", "508",                                           // Peugeot Sedan
+            "301", "407", "408", "508",                                 // Peugeot Sedan
             "Toledo",                                               // Seat Sedan
             "C-Elysee", "C4 Sedan",                                // Citroen Sedan
             "XE", "XF",                                            // Jaguar Sedan
@@ -109,7 +109,7 @@ namespace DataAcessLayer.SeedData
             "500", "500e", "Fiat 600e",                           // Fiat Hatchback/Mini
             "Fabia", "Scala", "Rapid",                            // Skoda Hatchback
             "Corsa", "Corsa-e", "Astra", "Astra HB",             // Opel Hatchback
-            "208", "308",                                         // Peugeot Hatchback
+            "108", "206", "207", "208", "307", "308", "e-208",      // Peugeot Hatchback
             "Ibiza", "Leon", "Leon HB",                           // Seat Hatchback
             "Born",                                                // Cupra Hatchback
             "T10F",                                                // Togg Hatchback/Fastback
@@ -180,7 +180,7 @@ namespace DataAcessLayer.SeedData
             "Tipo Station Wagon", "Marea Weekend",                // Fiat Station Wagon
             "Octavia Combi", "Superb Combi",                      // Skoda Station Wagon
             "Astra Sports Tourer", "Insignia Sports Tourer",      // Opel Station Wagon
-            "308 SW", "508 SW",                                   // Peugeot Station Wagon
+            "307 SW", "308 SW", "407 SW", "508 SW",                  // Peugeot Station Wagon
             "Leon ST",                                            // Seat Station Wagon
             "Leon Sportstourer",                                  // Cupra Station Wagon
             "C5 Tourer",                                          // Citroen Station Wagon
@@ -204,7 +204,7 @@ namespace DataAcessLayer.SeedData
         // Minivan & Panelvan modelleri
         private static readonly HashSet<string> MinivanPanelvanModels = new()
         {
-            "Boxer", "Rifter", "Partner", "Expert", "Traveller", // Peugeot Ticari/Minivan
+            "Boxer", "Rifter", "Partner", "Expert", "Traveller", "Bipper", // Peugeot Ticari/Minivan
             "Berlingo", "SpaceTourer", "Jumpy", "Jumper",        // Citroen Ticari/Minivan
             "Alhambra",                                           // Seat Minivan
             "Kangoo", "Scenic", "Grand Scenic",                  // Renault Minivan
@@ -348,15 +348,15 @@ namespace DataAcessLayer.SeedData
                 } },
                 { "Peugeot", new[] {
                     // Hatchback
-                    "208", "308",
+                    "108", "206", "207", "208", "307", "308", "e-208",
                     // Sedan
-                    "301", "508",
+                    "301", "407", "408", "508",
                     // Station Wagon
-                    "308 SW", "508 SW",
+                    "307 SW", "308 SW", "407 SW", "508 SW",
                     // SUV
-                    "2008", "3008", "5008",
+                    "2008", "3008", "5008", "e-2008",
                     // Minivan/Ticari
-                    "Boxer", "Rifter", "Partner", "Expert", "Traveller"
+                    "Boxer", "Rifter", "Partner", "Expert", "Traveller", "Bipper"
                 } },
                 { "Land Rover", new[] {
                     // SUV
@@ -721,15 +721,15 @@ namespace DataAcessLayer.SeedData
                 } },
                 { "Peugeot", new[] {
                     // Hatchback
-                    "208", "308",
+                    "108", "206", "207", "208", "307", "308", "e-208",
                     // Sedan
-                    "301", "508",
+                    "301", "407", "408", "508",
                     // Station Wagon
-                    "308 SW", "508 SW",
+                    "307 SW", "308 SW", "407 SW", "508 SW",
                     // SUV
-                    "2008", "3008", "5008",
+                    "2008", "3008", "5008", "e-2008",
                     // Minivan/Ticari
-                    "Boxer", "Rifter", "Partner", "Expert", "Traveller"
+                    "Boxer", "Rifter", "Partner", "Expert", "Traveller", "Bipper"
                 } },
                 { "Land Rover", new[] {
                     // SUV
@@ -798,6 +798,79 @@ namespace DataAcessLayer.SeedData
                     "Astra Sports Tourer", "Insignia Sports Tourer",
                     "Mokka", "Mokka-e", "Grandland", "Crossland",
                     "Combo", "Combo Life", "Vivaro", "Movano"
+                } },
+                { "Seat", new[] {
+                    "Ibiza", "Leon", "Leon HB",
+                    "Toledo",
+                    "Leon ST",
+                    "Arona",
+                    "Ateca", "Tarraco",
+                    "Alhambra"
+                } },
+                { "Cupra", new[] {
+                    "Born",
+                    "Leon Sportstourer",
+                    "Formentor", "Terramar"
+                } },
+                { "Togg", new[] {
+                    "T10F",
+                    "T10X"
+                } },
+                { "Citroen", new[] {
+                    "C3", "C4", "C4 X",
+                    "C-Elysee", "C4 Sedan",
+                    "C5 Tourer",
+                    "C3 Aircross", "C5 Aircross",
+                    "C3 Aircross Crossover",
+                    "Berlingo", "SpaceTourer", "Jumpy", "Jumper"
+                } },
+                { "Jaguar", new[] {
+                    "XE", "XF",
+                    "F-Type Coupe",
+                    "F-Type Cabrio",
+                    "F-Type Roadster",
+                    "F-Pace", "E-Pace", "I-Pace"
+                } },
+                { "Lexus", new[] {
+                    "CT",
+                    "IS", "ES", "GS", "LS",
+                    "RC", "LC",
+                    "LC Cabrio",
+                    "NX", "RX", "UX", "LX"
+                } },
+                { "Maserati", new[] {
+                    "Ghibli", "Quattroporte",
+                    "MC20", "GranTurismo",
+                    "GranCabrio",
+                    "MC20 Cielo",
+                    "Levante", "Grecale"
+                } },
+                { "Porsche", new[] {
+                    "Panamera", "Taycan",
+                    "911", "718 Cayman",
+                    "911 Cabrio",
+                    "718 Boxster", "911 Targa",
+                    "Cayenne", "Macan"
+                } },
+                { "Mini", new[] {
+                    "Cooper", "Cooper S", "Cooper SE",
+                    "Cooper Cabrio", "Cooper S Cabrio",
+                    "Clubman",
+                    "Countryman", "Countryman SE"
+                } },
+                { "Suzuki", new[] {
+                    "Swift", "Baleno", "Celerio", "Ignis",
+                    "Vitara", "S-Cross", "Jimny"
+                } },
+                { "DS", new[] {
+                    "DS 3", "DS 4",
+                    "DS 9",
+                    "DS 3 Crossback", "DS 7", "DS 7 Crossback"
+                } },
+                { "Chevrolet", new[] {
+                    "Aveo", "Cruze HB", "Spark",
+                    "Cruze", "Malibu", "Lacetti",
+                    "Captiva", "Trax", "Trailblazer"
                 } }
             };
 
