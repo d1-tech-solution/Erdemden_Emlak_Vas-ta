@@ -6,18 +6,19 @@ namespace DataAcessLayer.SeedData
 {
     public static class SeedVehicleTypes
     {
+        private static readonly Dictionary<string, string[]> VehicleTypeBodyMap = new()
+        {
+            { "Otomobil", new[] { "Sedan", "Hatchback", "Station Wagon", "Coupe", "Cabrio", "Roadster" } },
+            { "SUV & Arazi Araçları", new[] { "SUV", "Pickup", "Crossover", "Arazi Aracı", "Minivan & Panelvan" } },
+            { "Motosiklet", new[] { "Scooter", "Maxi Scooter", "Naked", "Sport", "Touring", "Enduro / Adventure", "Chopper / Cruiser", "Cross / Motocross", "Cafe Racer / Scrambler" } }
+        };
+
         public static async Task SeedAsync(Context context)
         {
             if (await context.Set<VehicleType>().AnyAsync())
                 return;
 
-            var vehicleTypeBodyMap = new Dictionary<string, string[]>
-            {
-                { "Otomobil", new[] { "Sedan", "Hatchback", "Station Wagon", "Coupe", "Cabrio", "Roadster" } },
-                { "SUV & Arazi Araçları", new[] { "SUV", "Pickup", "Crossover", "Arazi Aracı", "Minivan & Panelvan" } }
-            };
-
-            foreach (var vehicleTypeData in vehicleTypeBodyMap)
+            foreach (var vehicleTypeData in VehicleTypeBodyMap)
             {
                 var vehicleType = new VehicleType
                 {
@@ -30,15 +31,13 @@ namespace DataAcessLayer.SeedData
 
                 foreach (var bodyTypeName in vehicleTypeData.Value)
                 {
-                    var bodyType = new BodyType
+                    context.Set<BodyType>().Add(new BodyType
                     {
                         Id = Guid.NewGuid(),
                         VehicleTypeId = vehicleType.Id,
                         Name = bodyTypeName,
                         CreatedAt = DateTime.UtcNow
-                    };
-
-                    context.Set<BodyType>().Add(bodyType);
+                    });
                 }
             }
 
@@ -52,33 +51,41 @@ namespace DataAcessLayer.SeedData
         {
             var vehicleTypes = await context.Set<VehicleType>().ToListAsync();
             var existingBodyTypes = await context.Set<BodyType>().ToListAsync();
-
-            var requiredBodyTypes = new Dictionary<string, string[]>
-            {
-                { "Otomobil", new[] { "Sedan", "Hatchback", "Station Wagon", "Coupe", "Cabrio", "Roadster" } },
-                { "SUV & Arazi Araçları", new[] { "SUV", "Pickup", "Crossover", "Arazi Aracı", "Minivan & Panelvan" } }
-            };
-
             var added = false;
 
-            foreach (var entry in requiredBodyTypes)
+            foreach (var entry in VehicleTypeBodyMap)
             {
                 var vehicleType = vehicleTypes.FirstOrDefault(vt => vt.Name == entry.Key);
-                if (vehicleType == null) continue;
+                if (vehicleType == null)
+                {
+                    vehicleType = new VehicleType
+                    {
+                        Id = Guid.NewGuid(),
+                        Name = entry.Key,
+                        CreatedAt = DateTime.UtcNow
+                    };
+
+                    context.Set<VehicleType>().Add(vehicleType);
+                    vehicleTypes.Add(vehicleType);
+                    added = true;
+                }
 
                 foreach (var bodyTypeName in entry.Value)
                 {
                     var exists = existingBodyTypes.Any(bt => bt.Name == bodyTypeName && bt.VehicleTypeId == vehicleType.Id);
-                    if (exists) continue;
+                    if (exists)
+                        continue;
 
-                    context.Set<BodyType>().Add(new BodyType
+                    var bodyType = new BodyType
                     {
                         Id = Guid.NewGuid(),
                         VehicleTypeId = vehicleType.Id,
                         Name = bodyTypeName,
                         CreatedAt = DateTime.UtcNow
-                    });
+                    };
 
+                    context.Set<BodyType>().Add(bodyType);
+                    existingBodyTypes.Add(bodyType);
                     added = true;
                 }
             }

@@ -217,6 +217,135 @@ namespace DataAcessLayer.SeedData
             "Combo", "Combo Life", "Vivaro", "Movano"                    // Opel Ticari
         };
 
+        private static readonly HashSet<string> ScooterModels = new()
+        {
+            "PCX 125", "Activa 125", "NMAX 155", "Address 125", "Jupiter 125",
+            "Primavera 150", "Sprint 150", "Liberty 125", "SR GT 200", "Bluebird"
+        };
+
+        private static readonly HashSet<string> MaxiScooterModels = new()
+        {
+            "Forza 250", "XMAX 250", "Burgman 400", "GTS 300", "Beverly 400", "MP3 400"
+        };
+
+        private static readonly HashSet<string> NakedModels = new()
+        {
+            "CB 650R", "MT-07", "MT-09", "Z650", "Z900", "390 Duke", "250 Duke",
+            "Monster", "Street Triple RS", "Trident 660", "Apache RTR 200"
+        };
+
+        private static readonly HashSet<string> SportModels = new()
+        {
+            "S 1000 RR", "CBR 650R", "R25", "R6", "Ninja 250", "Ninja 650",
+            "GSX-R1000", "RC 390", "Panigale V2", "RS 660"
+        };
+
+        private static readonly HashSet<string> TouringModels = new()
+        {
+            "Gold Wing", "Street Glide", "Rocket 3"
+        };
+
+        private static readonly HashSet<string> AdventureEnduroModels = new()
+        {
+            "R 1250 GS", "Africa Twin", "Tenere 700", "Versys 650", "V-Strom 650",
+            "790 Adventure", "Multistrada V4", "Tiger 900", "Pan America 1250",
+            "Tuareg 660", "NC750X", "KLR 650"
+        };
+
+        private static readonly HashSet<string> ChopperCruiserModels = new()
+        {
+            "R 18", "Diavel", "Sportster S", "Iron 883", "Fat Bob 114", "Bonneville T120", "Superlight 125"
+        };
+
+        private static readonly HashSet<string> CrossMotocrossModels = new()
+        {
+            "KX 250", "RM-Z450", "SX-F 450", "SMX 125", "TK03"
+        };
+
+        private static readonly HashSet<string> CafeRacerScramblerModels = new()
+        {
+            "Scrambler Icon", "Svartpilen 401", "Drift L"
+        };
+
+        private static readonly Dictionary<string, string[]> MotorcycleBrandModels = new()
+        {
+            { "BMW", new[] { "R 1250 GS", "S 1000 RR", "F 900 R", "C 400 X", "R 18" } },
+            { "Honda", new[] { "CBR 650R", "CB 650R", "PCX 125", "Forza 250", "Africa Twin", "Gold Wing", "NC750X", "Activa 125" } },
+            { "Yamaha", new[] { "R25", "R6", "MT-07", "MT-09", "NMAX 155", "XMAX 250", "Tenere 700" } },
+            { "Kawasaki", new[] { "Ninja 250", "Ninja 650", "Z650", "Z900", "Versys 650", "KLR 650", "KX 250" } },
+            { "Suzuki", new[] { "GSX-R1000", "GSX-S750", "V-Strom 650", "Burgman 400", "Address 125", "RM-Z450" } },
+            { "KTM", new[] { "390 Duke", "250 Duke", "790 Adventure", "RC 390", "SX-F 450" } },
+            { "Ducati", new[] { "Panigale V2", "Monster", "Multistrada V4", "Scrambler Icon", "Diavel" } },
+            { "Harley-Davidson", new[] { "Sportster S", "Iron 883", "Fat Bob 114", "Street Glide", "Pan America 1250" } },
+            { "Triumph", new[] { "Street Triple RS", "Trident 660", "Tiger 900", "Bonneville T120", "Rocket 3" } },
+            { "Vespa", new[] { "Primavera 150", "Sprint 150", "GTS 300" } },
+            { "Piaggio", new[] { "Liberty 125", "Beverly 400", "MP3 400" } },
+            { "Aprilia", new[] { "RS 660", "Tuono 660", "SR GT 200", "Tuareg 660" } },
+            { "Bajaj", new[] { "Pulsar NS200", "Dominar 400" } },
+            { "TVS", new[] { "Apache RTR 200", "Jupiter 125" } },
+            { "Mondial", new[] { "Drift L", "X-Treme Max 200i", "SMX 125" } },
+            { "Kuba", new[] { "Superlight 125", "Bluebird", "TK03" } },
+            { "Husqvarna", new[] { "Svartpilen 401" } }
+        };
+
+        private static void MergeMotorcycleBrandModels(Dictionary<string, string[]> brandModels)
+        {
+            foreach (var entry in MotorcycleBrandModels)
+            {
+                if (brandModels.TryGetValue(entry.Key, out var existingModels))
+                {
+                    brandModels[entry.Key] = existingModels.Concat(entry.Value).Distinct().ToArray();
+                    continue;
+                }
+
+                brandModels[entry.Key] = entry.Value;
+            }
+        }
+
+        private static Guid? ResolveBodyTypeId(string modelName, IReadOnlyDictionary<string, Guid?> bodyTypeMap)
+        {
+            if (SuvModels.Contains(modelName))
+                return bodyTypeMap["SUV"];
+            if (SedanModels.Contains(modelName))
+                return bodyTypeMap["Sedan"];
+            if (HatchbackModels.Contains(modelName))
+                return bodyTypeMap["Hatchback"];
+            if (CoupeModels.Contains(modelName))
+                return bodyTypeMap["Coupe"];
+            if (CabrioModels.Contains(modelName))
+                return bodyTypeMap["Cabrio"];
+            if (RoadsterModels.Contains(modelName))
+                return bodyTypeMap["Roadster"];
+            if (StationWagonModels.Contains(modelName))
+                return bodyTypeMap["Station Wagon"];
+            if (CrossoverModels.Contains(modelName))
+                return bodyTypeMap["Crossover"];
+            if (PickupModels.Contains(modelName))
+                return bodyTypeMap["Pickup"];
+            if (MinivanPanelvanModels.Contains(modelName))
+                return bodyTypeMap["Minivan & Panelvan"];
+            if (ScooterModels.Contains(modelName))
+                return bodyTypeMap["Scooter"];
+            if (MaxiScooterModels.Contains(modelName))
+                return bodyTypeMap["Maxi Scooter"];
+            if (NakedModels.Contains(modelName))
+                return bodyTypeMap["Naked"];
+            if (SportModels.Contains(modelName))
+                return bodyTypeMap["Sport"];
+            if (TouringModels.Contains(modelName))
+                return bodyTypeMap["Touring"];
+            if (AdventureEnduroModels.Contains(modelName))
+                return bodyTypeMap["Enduro / Adventure"];
+            if (ChopperCruiserModels.Contains(modelName))
+                return bodyTypeMap["Chopper / Cruiser"];
+            if (CrossMotocrossModels.Contains(modelName))
+                return bodyTypeMap["Cross / Motocross"];
+            if (CafeRacerScramblerModels.Contains(modelName))
+                return bodyTypeMap["Cafe Racer / Scrambler"];
+
+            return null;
+        }
+
         public static async Task SeedAsync(Context context)
         {
             if (await context.Set<Brand>().AnyAsync())
@@ -234,6 +363,15 @@ namespace DataAcessLayer.SeedData
             var crossoverBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Crossover");
             var pickupBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Pickup");
             var minivanPanelvanBodyType2 = bodyTypes.FirstOrDefault(b => b.Name == "Minivan & Panelvan");
+            var scooterBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Scooter");
+            var maxiScooterBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Maxi Scooter");
+            var nakedBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Naked");
+            var sportBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Sport");
+            var touringBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Touring");
+            var adventureBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Enduro / Adventure");
+            var cruiserBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Chopper / Cruiser");
+            var crossBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Cross / Motocross");
+            var scramblerBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Cafe Racer / Scrambler");
 
             var brandModels = new Dictionary<string, string[]>
             {
@@ -558,6 +696,31 @@ namespace DataAcessLayer.SeedData
                 } }
             };
 
+            MergeMotorcycleBrandModels(brandModels);
+
+            var bodyTypeMap = new Dictionary<string, Guid?>
+            {
+                ["SUV"] = suvBodyType?.Id,
+                ["Sedan"] = sedanBodyType?.Id,
+                ["Hatchback"] = hatchbackBodyType?.Id,
+                ["Coupe"] = coupeBodyType?.Id,
+                ["Cabrio"] = cabrioBodyType?.Id,
+                ["Roadster"] = roadsterBodyType?.Id,
+                ["Station Wagon"] = stationWagonBodyType?.Id,
+                ["Crossover"] = crossoverBodyType?.Id,
+                ["Pickup"] = pickupBodyType?.Id,
+                ["Minivan & Panelvan"] = minivanPanelvanBodyType2?.Id,
+                ["Scooter"] = scooterBodyType?.Id,
+                ["Maxi Scooter"] = maxiScooterBodyType?.Id,
+                ["Naked"] = nakedBodyType?.Id,
+                ["Sport"] = sportBodyType?.Id,
+                ["Touring"] = touringBodyType?.Id,
+                ["Enduro / Adventure"] = adventureBodyType?.Id,
+                ["Chopper / Cruiser"] = cruiserBodyType?.Id,
+                ["Cross / Motocross"] = crossBodyType?.Id,
+                ["Cafe Racer / Scrambler"] = scramblerBodyType?.Id
+            };
+
             foreach (var brandData in brandModels)
             {
                 var brand = new Brand
@@ -571,27 +734,7 @@ namespace DataAcessLayer.SeedData
 
                 foreach (var modelName in brandData.Value)
                 {
-                    Guid? bodyTypeId = null;
-                    if (SuvModels.Contains(modelName))
-                        bodyTypeId = suvBodyType?.Id;
-                    else if (SedanModels.Contains(modelName))
-                        bodyTypeId = sedanBodyType?.Id;
-                    else if (HatchbackModels.Contains(modelName))
-                        bodyTypeId = hatchbackBodyType?.Id;
-                    else if (CoupeModels.Contains(modelName))
-                        bodyTypeId = coupeBodyType?.Id;
-                    else if (CabrioModels.Contains(modelName))
-                        bodyTypeId = cabrioBodyType?.Id;
-                    else if (RoadsterModels.Contains(modelName))
-                        bodyTypeId = roadsterBodyType?.Id;
-                    else if (StationWagonModels.Contains(modelName))
-                        bodyTypeId = stationWagonBodyType?.Id;
-                    else if (CrossoverModels.Contains(modelName))
-                        bodyTypeId = crossoverBodyType?.Id;
-                    else if (PickupModels.Contains(modelName))
-                        bodyTypeId = pickupBodyType?.Id;
-                    else if (MinivanPanelvanModels.Contains(modelName))
-                        bodyTypeId = minivanPanelvanBodyType2?.Id;
+                    var bodyTypeId = ResolveBodyTypeId(modelName, bodyTypeMap);
 
                     var model = new Model
                     {
@@ -617,6 +760,7 @@ namespace DataAcessLayer.SeedData
             // VehicleType-aware BodyType seçimi (duplicate body type sorunu için)
             var vehicleTypes = await context.Set<VehicleType>().ToListAsync();
             var otomobilVT = vehicleTypes.FirstOrDefault(vt => vt.Name == "Otomobil");
+            var motosikletVT = vehicleTypes.FirstOrDefault(vt => vt.Name == "Motosiklet");
             var suvAraziVT = vehicleTypes.FirstOrDefault(vt => vt.Name == "SUV & Arazi Araçları");
 
             var bodyTypes = await context.Set<BodyType>().ToListAsync();
@@ -630,6 +774,15 @@ namespace DataAcessLayer.SeedData
             var crossoverBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Crossover" && b.VehicleTypeId == suvAraziVT?.Id);
             var pickupBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Pickup" && b.VehicleTypeId == suvAraziVT?.Id);
             var minivanPanelvanBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Minivan & Panelvan" && b.VehicleTypeId == suvAraziVT?.Id);
+            var scooterBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Scooter" && b.VehicleTypeId == motosikletVT?.Id);
+            var maxiScooterBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Maxi Scooter" && b.VehicleTypeId == motosikletVT?.Id);
+            var nakedBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Naked" && b.VehicleTypeId == motosikletVT?.Id);
+            var sportBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Sport" && b.VehicleTypeId == motosikletVT?.Id);
+            var touringBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Touring" && b.VehicleTypeId == motosikletVT?.Id);
+            var adventureBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Enduro / Adventure" && b.VehicleTypeId == motosikletVT?.Id);
+            var cruiserBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Chopper / Cruiser" && b.VehicleTypeId == motosikletVT?.Id);
+            var crossBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Cross / Motocross" && b.VehicleTypeId == motosikletVT?.Id);
+            var scramblerBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Cafe Racer / Scrambler" && b.VehicleTypeId == motosikletVT?.Id);
 
             var brandModels = new Dictionary<string, string[]>
             {
@@ -874,6 +1027,31 @@ namespace DataAcessLayer.SeedData
                 } }
             };
 
+            MergeMotorcycleBrandModels(brandModels);
+
+            var bodyTypeMap = new Dictionary<string, Guid?>
+            {
+                ["SUV"] = suvBodyType?.Id,
+                ["Sedan"] = sedanBodyType?.Id,
+                ["Hatchback"] = hatchbackBodyType?.Id,
+                ["Coupe"] = coupeBodyType?.Id,
+                ["Cabrio"] = cabrioBodyType?.Id,
+                ["Roadster"] = roadsterBodyType?.Id,
+                ["Station Wagon"] = stationWagonBodyType?.Id,
+                ["Crossover"] = crossoverBodyType?.Id,
+                ["Pickup"] = pickupBodyType?.Id,
+                ["Minivan & Panelvan"] = minivanPanelvanBodyType?.Id,
+                ["Scooter"] = scooterBodyType?.Id,
+                ["Maxi Scooter"] = maxiScooterBodyType?.Id,
+                ["Naked"] = nakedBodyType?.Id,
+                ["Sport"] = sportBodyType?.Id,
+                ["Touring"] = touringBodyType?.Id,
+                ["Enduro / Adventure"] = adventureBodyType?.Id,
+                ["Chopper / Cruiser"] = cruiserBodyType?.Id,
+                ["Cross / Motocross"] = crossBodyType?.Id,
+                ["Cafe Racer / Scrambler"] = scramblerBodyType?.Id
+            };
+
             var existingBrands = await context.Set<Brand>()
                 .Include(b => b.Models)
                 .ToListAsync();
@@ -902,27 +1080,7 @@ namespace DataAcessLayer.SeedData
                 {
                     if (existingModelNames.Contains(modelName)) continue;
 
-                    Guid? bodyTypeId = null;
-                    if (SuvModels.Contains(modelName))
-                        bodyTypeId = suvBodyType?.Id;
-                    else if (SedanModels.Contains(modelName))
-                        bodyTypeId = sedanBodyType?.Id;
-                    else if (HatchbackModels.Contains(modelName))
-                        bodyTypeId = hatchbackBodyType?.Id;
-                    else if (CoupeModels.Contains(modelName))
-                        bodyTypeId = coupeBodyType?.Id;
-                    else if (CabrioModels.Contains(modelName))
-                        bodyTypeId = cabrioBodyType?.Id;
-                    else if (RoadsterModels.Contains(modelName))
-                        bodyTypeId = roadsterBodyType?.Id;
-                    else if (StationWagonModels.Contains(modelName))
-                        bodyTypeId = stationWagonBodyType?.Id;
-                    else if (CrossoverModels.Contains(modelName))
-                        bodyTypeId = crossoverBodyType?.Id;
-                    else if (PickupModels.Contains(modelName))
-                        bodyTypeId = pickupBodyType?.Id;
-                    else if (MinivanPanelvanModels.Contains(modelName))
-                        bodyTypeId = minivanPanelvanBodyType?.Id;
+                    var bodyTypeId = ResolveBodyTypeId(modelName, bodyTypeMap);
 
                     context.Set<Model>().Add(new Model
                     {
@@ -952,6 +1110,7 @@ namespace DataAcessLayer.SeedData
             // VehicleType'ları al - doğru parent'ı bulmak için
             var vehicleTypes = await context.Set<VehicleType>().AsNoTracking().ToListAsync();
             var otomobilVT = vehicleTypes.FirstOrDefault(vt => vt.Name == "Otomobil");
+            var motosikletVT = vehicleTypes.FirstOrDefault(vt => vt.Name == "Motosiklet");
             var suvAraziVT = vehicleTypes.FirstOrDefault(vt => vt.Name == "SUV & Arazi Araçları");
 
             Console.WriteLine($"[Seed] VehicleTypes -> Otomobil: {otomobilVT?.Id}, SUV & Arazi: {suvAraziVT?.Id}");
@@ -974,6 +1133,15 @@ namespace DataAcessLayer.SeedData
             var roadsterBT = bodyTypes.FirstOrDefault(bt => bt.Name == "Roadster" && bt.VehicleTypeId == otomobilVT?.Id);
             var stationWagonBT = bodyTypes.FirstOrDefault(bt => bt.Name == "Station Wagon" && bt.VehicleTypeId == otomobilVT?.Id);
             var crossoverBT = bodyTypes.FirstOrDefault(bt => bt.Name == "Crossover" && bt.VehicleTypeId == suvAraziVT?.Id);
+            var scooterBT = bodyTypes.FirstOrDefault(bt => bt.Name == "Scooter" && bt.VehicleTypeId == motosikletVT?.Id);
+            var maxiScooterBT = bodyTypes.FirstOrDefault(bt => bt.Name == "Maxi Scooter" && bt.VehicleTypeId == motosikletVT?.Id);
+            var nakedBT = bodyTypes.FirstOrDefault(bt => bt.Name == "Naked" && bt.VehicleTypeId == motosikletVT?.Id);
+            var sportBT = bodyTypes.FirstOrDefault(bt => bt.Name == "Sport" && bt.VehicleTypeId == motosikletVT?.Id);
+            var touringBT = bodyTypes.FirstOrDefault(bt => bt.Name == "Touring" && bt.VehicleTypeId == motosikletVT?.Id);
+            var adventureBT = bodyTypes.FirstOrDefault(bt => bt.Name == "Enduro / Adventure" && bt.VehicleTypeId == motosikletVT?.Id);
+            var cruiserBT = bodyTypes.FirstOrDefault(bt => bt.Name == "Chopper / Cruiser" && bt.VehicleTypeId == motosikletVT?.Id);
+            var crossBT = bodyTypes.FirstOrDefault(bt => bt.Name == "Cross / Motocross" && bt.VehicleTypeId == motosikletVT?.Id);
+            var scramblerBT = bodyTypes.FirstOrDefault(bt => bt.Name == "Cafe Racer / Scrambler" && bt.VehicleTypeId == motosikletVT?.Id);
 
             var updates = new Dictionary<string, (BodyType? bodyType, HashSet<string> models)>
             {
@@ -986,7 +1154,16 @@ namespace DataAcessLayer.SeedData
                 { "Crossover", (crossoverBT, CrossoverModels) },
                 { "SUV", (suvBT, SuvModels) },
                 { "Pickup", (pickupBT, PickupModels) },
-                { "Minivan & Panelvan", (minivanPanelvanBT, MinivanPanelvanModels) }
+                { "Minivan & Panelvan", (minivanPanelvanBT, MinivanPanelvanModels) },
+                { "Scooter", (scooterBT, ScooterModels) },
+                { "Maxi Scooter", (maxiScooterBT, MaxiScooterModels) },
+                { "Naked", (nakedBT, NakedModels) },
+                { "Sport", (sportBT, SportModels) },
+                { "Touring", (touringBT, TouringModels) },
+                { "Enduro / Adventure", (adventureBT, AdventureEnduroModels) },
+                { "Chopper / Cruiser", (cruiserBT, ChopperCruiserModels) },
+                { "Cross / Motocross", (crossBT, CrossMotocrossModels) },
+                { "Cafe Racer / Scrambler", (scramblerBT, CafeRacerScramblerModels) }
             };
 
             var totalUpdated = 0;
@@ -1010,19 +1187,19 @@ namespace DataAcessLayer.SeedData
             Console.WriteLine($"[Seed] === Total models updated: {totalUpdated} ===");
 
             // Yanlış VehicleType'a ait orphan BodyType'ları temizle (duplicate olanlar)
-            await CleanupOrphanBodyTypesAsync(context, otomobilVT, suvAraziVT);
+            await CleanupOrphanBodyTypesAsync(context, otomobilVT, suvAraziVT, motosikletVT);
         }
 
         /// <summary>
         /// Yanlış VehicleType altındaki duplicate BodyType kayıtlarını temizlemeye çalışır (hata olursa atlar)
         /// </summary>
-        private static async Task CleanupOrphanBodyTypesAsync(Context context, VehicleType? otomobilVT, VehicleType? suvAraziVT)
+        private static async Task CleanupOrphanBodyTypesAsync(Context context, VehicleType? otomobilVT, VehicleType? suvAraziVT, VehicleType? motosikletVT)
         {
-            if (otomobilVT == null || suvAraziVT == null) return;
+            if (otomobilVT == null || suvAraziVT == null || motosikletVT == null) return;
 
             try
             {
-                var validVehicleTypeIds = new[] { otomobilVT.Id, suvAraziVT.Id };
+                var validVehicleTypeIds = new[] { otomobilVT.Id, suvAraziVT.Id, motosikletVT.Id };
                 var inClause = string.Join(", ", validVehicleTypeIds.Select(id => $"'{id}'"));
 
                 // Hiçbir tabloda referans edilmeyen orphan BodyType'ları sil
