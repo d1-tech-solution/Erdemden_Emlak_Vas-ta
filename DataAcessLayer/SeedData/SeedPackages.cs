@@ -6,6 +6,155 @@ namespace DataAcessLayer.SeedData
 {
     public static class SeedPackages
     {
+        private static readonly List<(string BrandName, string ModelName, string[] Packages)> MotorcyclePackageEntries = new()
+        {
+            ("BMW", "R 1250 GS", new[] { "Standart", "Style Triple Black", "GS Trophy", "Adventure", "Option 719" }),
+            ("BMW", "F 850 GS", new[] { "Standart", "Adventure", "Rallye", "Style Triple Black" }),
+            ("BMW", "S 1000 RR", new[] { "Standart", "M Package", "Race Package" }),
+            ("BMW", "G 310 R", new[] { "Standart", "Sport", "Style Passion" }),
+            ("BMW", "C 400 X", new[] { "Standart", "Style Triple Black", "Ride Pro" }),
+            ("BMW", "C 400 GT", new[] { "Standart", "Exclusive", "Comfort Package" }),
+            ("BMW", "CE 04", new[] { "Standart", "Avantgarde", "Exclusive" }),
+            ("Honda", "PCX 125", new[] { "CBS", "ABS", "DX" }),
+            ("Honda", "PCX 160", new[] { "CBS", "ABS", "DX" }),
+            ("Honda", "Forza 250", new[] { "Standart", "ABS", "Smart Top Box" }),
+            ("Honda", "Forza 750", new[] { "Standart", "DCT", "Travel Pack" }),
+            ("Honda", "ADV 350", new[] { "Standart", "ABS", "Smart Top Box" }),
+            ("Honda", "CBR 650R", new[] { "Standart", "E-Clutch" }),
+            ("Honda", "CB 650R", new[] { "Standart", "E-Clutch" }),
+            ("Honda", "Hornet 750", new[] { "Standart", "ABS" }),
+            ("Honda", "Africa Twin", new[] { "Standart", "Adventure Sports", "DCT", "ES" }),
+            ("Honda", "Gold Wing", new[] { "Bagger", "Tour DCT", "Tour Airbag DCT" }),
+            ("Honda", "NC750X", new[] { "Standart", "DCT", "Travel Edition" }),
+            ("Honda", "SH125i", new[] { "Standart", "ABS" }),
+            ("Yamaha", "NMAX 155", new[] { "Standart", "Connected", "Tech Max" }),
+            ("Yamaha", "XMAX 250", new[] { "Standart", "Tech Max" }),
+            ("Yamaha", "XMAX 300", new[] { "Standart", "Tech Max" }),
+            ("Yamaha", "R25", new[] { "Standart", "ABS" }),
+            ("Yamaha", "R3", new[] { "Standart", "Monster Energy" }),
+            ("Yamaha", "R7", new[] { "Standart" }),
+            ("Yamaha", "MT-07", new[] { "Standart", "Pure", "ABS" }),
+            ("Yamaha", "MT-09", new[] { "Standart", "SP" }),
+            ("Yamaha", "MT-25", new[] { "Standart", "ABS" }),
+            ("Yamaha", "Tenere 700", new[] { "Standart", "World Raid", "Explore" }),
+            ("Yamaha", "Tracer 9", new[] { "Standart", "GT", "GT+" }),
+            ("Yamaha", "Aerox 155", new[] { "Standart", "Connected" }),
+            ("Kawasaki", "Ninja 250", new[] { "Standart", "KRT Edition" }),
+            ("Kawasaki", "Ninja 650", new[] { "Standart", "KRT Edition", "Performance" }),
+            ("Kawasaki", "Ninja ZX-6R", new[] { "Standart", "KRT Edition" }),
+            ("Kawasaki", "Z650", new[] { "Standart", "Performance" }),
+            ("Kawasaki", "Z900", new[] { "Standart", "SE" }),
+            ("Kawasaki", "Versys 650", new[] { "Standart", "Tourer Plus" }),
+            ("Kawasaki", "KLR 650", new[] { "Standart", "Adventure" }),
+            ("Suzuki", "GSX-R1000", new[] { "Standart", "R", "MotoGP Edition" }),
+            ("Suzuki", "GSX-S750", new[] { "Standart", "Yugen" }),
+            ("Suzuki", "GSX-8S", new[] { "Standart", "Tech Pack" }),
+            ("Suzuki", "Hayabusa", new[] { "Standart", "25th Anniversary" }),
+            ("Suzuki", "V-Strom 650", new[] { "Standart", "XT", "Adventure" }),
+            ("Suzuki", "V-Strom 800DE", new[] { "Standart", "Adventure" }),
+            ("Suzuki", "Burgman 400", new[] { "Standart", "Executive" }),
+            ("KTM", "390 Duke", new[] { "Standart", "GP" }),
+            ("KTM", "250 Duke", new[] { "Standart" }),
+            ("KTM", "790 Adventure", new[] { "Standart", "R" }),
+            ("KTM", "1290 Super Adventure S", new[] { "Standart", "Tech Pack" }),
+            ("KTM", "RC 390", new[] { "Standart", "GP" }),
+            ("KTM", "690 SMC R", new[] { "Standart" }),
+            ("Ducati", "Panigale V2", new[] { "Standart", "Bayliss" }),
+            ("Ducati", "Monster", new[] { "Standart", "Plus", "SP" }),
+            ("Ducati", "Multistrada V4", new[] { "Standart", "S", "Pikes Peak", "Rally" }),
+            ("Ducati", "Scrambler Icon", new[] { "Icon", "Full Throttle", "Nightshift" }),
+            ("Ducati", "Diavel", new[] { "Standart", "V4", "Lamborghini" }),
+            ("Ducati", "Hypermotard 950", new[] { "Standart", "SP", "RVE" }),
+            ("Harley-Davidson", "Sportster S", new[] { "Standart" }),
+            ("Harley-Davidson", "Iron 883", new[] { "Standart" }),
+            ("Harley-Davidson", "Fat Bob 114", new[] { "Standart" }),
+            ("Harley-Davidson", "Street Glide", new[] { "Special", "ST" }),
+            ("Harley-Davidson", "Pan America 1250", new[] { "Standart", "Special" }),
+            ("Triumph", "Street Triple RS", new[] { "R", "RS", "Moto2 Edition" }),
+            ("Triumph", "Trident 660", new[] { "Standart", "Triple Tribute" }),
+            ("Triumph", "Tiger 900", new[] { "GT", "GT Pro", "Rally Pro" }),
+            ("Triumph", "Bonneville T120", new[] { "Standart", "Black" }),
+            ("Triumph", "Rocket 3", new[] { "R", "GT" }),
+            ("Triumph", "Scrambler 900", new[] { "Standart" }),
+            ("Vespa", "Primavera 150", new[] { "Standart", "S", "RED" }),
+            ("Vespa", "Sprint 150", new[] { "Standart", "S" }),
+            ("Vespa", "GTS 300", new[] { "Standart", "Super", "SuperSport" }),
+            ("Vespa", "Elettrica", new[] { "45 km/h", "70 km/h" }),
+            ("Piaggio", "Liberty 125", new[] { "Standart", "S" }),
+            ("Piaggio", "Beverly 400", new[] { "Standart", "S" }),
+            ("Piaggio", "MP3 400", new[] { "Sport", "Exclusive" }),
+            ("Piaggio", "Medley 150", new[] { "Standart", "S" }),
+            ("Aprilia", "RS 660", new[] { "Standart", "Extrema" }),
+            ("Aprilia", "Tuono 660", new[] { "Standart", "Factory" }),
+            ("Aprilia", "SR GT 200", new[] { "Standart", "Sport" }),
+            ("Aprilia", "Tuareg 660", new[] { "Standart", "Rally" }),
+            ("Aprilia", "RSV4", new[] { "Standart", "Factory" }),
+            ("Bajaj", "Pulsar NS200", new[] { "Standart", "UG" }),
+            ("Bajaj", "Pulsar N250", new[] { "Standart", "Dual Channel ABS" }),
+            ("Bajaj", "Dominar 400", new[] { "Standart", "Touring" }),
+            ("TVS", "Apache RTR 200", new[] { "Standart", "4V", "Ride Modes" }),
+            ("TVS", "Jupiter 125", new[] { "Drum", "Disc" }),
+            ("TVS", "NTorq 125", new[] { "Standart", "Race XP", "XT" }),
+            ("TVS", "Apache RR 310", new[] { "Standart", "BTO" }),
+            ("Royal Enfield", "Classic 350", new[] { "Redditch", "Halcyon", "Signals", "Dark", "Chrome" }),
+            ("Royal Enfield", "Meteor 350", new[] { "Fireball", "Stellar", "Supernova" }),
+            ("Royal Enfield", "Hunter 350", new[] { "Retro", "Metro", "Metro Rebel" }),
+            ("Royal Enfield", "Himalayan 450", new[] { "Base", "Pass", "Summit" }),
+            ("Royal Enfield", "Interceptor 650", new[] { "Standart", "Black Ray", "Barcelona Blue" }),
+            ("Royal Enfield", "Super Meteor 650", new[] { "Astral", "Interstellar", "Celestial" }),
+            ("Benelli", "TNT 125", new[] { "Standart" }),
+            ("Benelli", "302S", new[] { "Standart" }),
+            ("Benelli", "Leoncino 250", new[] { "Standart" }),
+            ("Benelli", "TRK 502X", new[] { "Standart" }),
+            ("Benelli", "752S", new[] { "Standart" }),
+            ("CFMOTO", "250NK", new[] { "Standart" }),
+            ("CFMOTO", "450SR", new[] { "Standart", "S" }),
+            ("CFMOTO", "650MT", new[] { "Standart", "Touring" }),
+            ("CFMOTO", "700CL-X", new[] { "Heritage", "Sport", "Adventure" }),
+            ("CFMOTO", "800MT", new[] { "Sport", "Touring", "Explore" }),
+            ("QJMotor", "SRK 250", new[] { "Standart" }),
+            ("QJMotor", "SRK 550", new[] { "Standart" }),
+            ("QJMotor", "SRT 550", new[] { "Standart" }),
+            ("SYM", "Joymax Z 250", new[] { "Standart", "Plus" }),
+            ("SYM", "Jet X 125", new[] { "Standart" }),
+            ("SYM", "Fiddle 125", new[] { "Standart" }),
+            ("SYM", "Cruisym 250", new[] { "Standart" }),
+            ("Kymco", "Agility 125", new[] { "Standart" }),
+            ("Kymco", "Like 125", new[] { "Standart" }),
+            ("Kymco", "Xciting VS 400", new[] { "Standart" }),
+            ("Kymco", "Downtown 250i", new[] { "Standart" }),
+            ("Husqvarna", "Svartpilen 401", new[] { "Standart" }),
+            ("Husqvarna", "Vitpilen 401", new[] { "Standart" }),
+            ("Husqvarna", "Norden 901", new[] { "Standart", "Expedition" }),
+            ("Husqvarna", "701 Supermoto", new[] { "Standart" }),
+            ("Mondial", "Drift L", new[] { "Standart" }),
+            ("Mondial", "X-Treme Max 200i", new[] { "Standart" }),
+            ("Mondial", "SMX 125", new[] { "Standart" }),
+            ("Mondial", "Turismo 350i", new[] { "Standart" }),
+            ("Mondial", "Pagani 250i", new[] { "Standart" }),
+            ("Kuba", "Superlight 125", new[] { "Standart" }),
+            ("Kuba", "Bluebird", new[] { "Standart" }),
+            ("Kuba", "TK03", new[] { "Standart" }),
+            ("Kuba", "VN50 Pro", new[] { "Standart" }),
+            ("Kuba", "ATR 125", new[] { "Standart" }),
+            ("NIU", "NQi GTS", new[] { "Standart", "Sport" }),
+            ("NIU", "MQi GT", new[] { "Standart", "EVO" })
+        };
+
+        private static void MergeMotorcyclePackages(Dictionary<string, string[]> modelPackages)
+        {
+            foreach (var (_, modelName, packages) in MotorcyclePackageEntries)
+            {
+                if (modelPackages.TryGetValue(modelName, out var existingPackages))
+                {
+                    modelPackages[modelName] = existingPackages.Concat(packages).Distinct().ToArray();
+                    continue;
+                }
+
+                modelPackages[modelName] = packages;
+            }
+        }
+
         /// <summary>
         /// Tüm modellere ait paketleri seed eder (Türkiye pazarı, son 10-15 yıl)
         /// </summary>
@@ -1398,6 +1547,8 @@ namespace DataAcessLayer.SeedData
                 { "Trailblazer", new[] { "LS", "LT", "LTZ", "Premier", "1.2 Turbo", "1.3 Turbo", "Activ" } }
             };
 
+            MergeMotorcyclePackages(modelPackages);
+
             foreach (var model in models)
             {
                 if (modelPackages.TryGetValue(model.Name, out var packages))
@@ -1919,6 +2070,8 @@ namespace DataAcessLayer.SeedData
                 ("Chevrolet", "Trax", new[] { "LS", "LT", "LTZ", "1.4 Turbo", "1.6", "1.7D" }),
                 ("Chevrolet", "Trailblazer", new[] { "LS", "LT", "LTZ", "Premier", "1.2 Turbo", "1.3 Turbo", "Activ" })
             };
+
+            newPackages.AddRange(MotorcyclePackageEntries);
 
             var added = false;
 

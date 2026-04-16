@@ -10,7 +10,7 @@ namespace DataAcessLayer.SeedData
         {
             { "Otomobil", new[] { "Sedan", "Hatchback", "Station Wagon", "Coupe", "Cabrio", "Roadster" } },
             { "SUV & Arazi Araçları", new[] { "SUV", "Pickup", "Crossover", "Arazi Aracı", "Minivan & Panelvan" } },
-            { "Motosiklet", new[] { "Scooter", "Maxi Scooter", "Naked", "Sport", "Touring", "Enduro / Adventure", "Chopper / Cruiser", "Cross / Motocross", "Cafe Racer / Scrambler" } }
+            { "Motosiklet", new[] { "Scooter", "Maxi Scooter", "Naked", "Sport", "Touring", "Enduro / Adventure", "Chopper / Cruiser", "Cross / Motocross", "Cafe Racer / Scrambler", "Underbone / Cub", "Elektrikli", "Supermoto" } }
         };
 
         public static async Task SeedAsync(Context context)

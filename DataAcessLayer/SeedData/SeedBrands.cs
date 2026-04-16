@@ -219,73 +219,108 @@ namespace DataAcessLayer.SeedData
 
         private static readonly HashSet<string> ScooterModels = new()
         {
-            "PCX 125", "Activa 125", "NMAX 155", "Address 125", "Jupiter 125",
-            "Primavera 150", "Sprint 150", "Liberty 125", "SR GT 200", "Bluebird"
+            "PCX 125", "PCX 160", "Activa 125", "NMAX 155", "Address 125", "Jupiter 125",
+            "Primavera 150", "Sprint 150", "Liberty 125", "SR GT 200", "Bluebird",
+            "SH125i", "Aerox 155", "Medley 150", "NTorq 125", "Jet X 125",
+            "Fiddle 125", "Agility 125", "Like 125", "VN50 Pro"
         };
 
         private static readonly HashSet<string> MaxiScooterModels = new()
         {
-            "Forza 250", "XMAX 250", "Burgman 400", "GTS 300", "Beverly 400", "MP3 400"
+            "Forza 250", "Forza 750", "ADV 350", "XMAX 250", "XMAX 300",
+            "Burgman 400", "GTS 300", "Beverly 400", "MP3 400", "C 400 X",
+            "C 400 GT", "Joymax Z 250", "Cruisym 250", "Downtown 250i", "X-Treme Max 200i"
         };
 
         private static readonly HashSet<string> NakedModels = new()
         {
-            "CB 650R", "MT-07", "MT-09", "Z650", "Z900", "390 Duke", "250 Duke",
-            "Monster", "Street Triple RS", "Trident 660", "Apache RTR 200"
+            "CB 650R", "Hornet 750", "MT-07", "MT-09", "MT-25", "Z650", "Z900",
+            "390 Duke", "250 Duke", "Monster", "Street Triple RS", "Trident 660",
+            "Apache RTR 200", "G 310 R", "F 900 R", "GSX-S750", "GSX-8S",
+            "Tuono 660", "Pulsar NS200", "Pulsar N250", "TNT 125", "302S",
+            "752S", "250NK", "SRK 250", "SRK 550", "Pagani 250i", "Speed Twin 900"
         };
 
         private static readonly HashSet<string> SportModels = new()
         {
-            "S 1000 RR", "CBR 650R", "R25", "R6", "Ninja 250", "Ninja 650",
-            "GSX-R1000", "RC 390", "Panigale V2", "RS 660"
+            "S 1000 RR", "CBR 650R", "CBR 500R", "R25", "R3", "R6", "R7",
+            "Ninja 250", "Ninja 650", "Ninja ZX-6R", "GSX-R1000", "Hayabusa",
+            "RC 390", "Panigale V2", "RS 660", "RSV4", "450SR", "250SR", "Apache RR 310"
         };
 
         private static readonly HashSet<string> TouringModels = new()
         {
-            "Gold Wing", "Street Glide", "Rocket 3"
+            "Gold Wing", "Street Glide", "Rocket 3", "Tracer 9"
         };
 
         private static readonly HashSet<string> AdventureEnduroModels = new()
         {
-            "R 1250 GS", "Africa Twin", "Tenere 700", "Versys 650", "V-Strom 650",
-            "790 Adventure", "Multistrada V4", "Tiger 900", "Pan America 1250",
-            "Tuareg 660", "NC750X", "KLR 650"
+            "R 1250 GS", "F 850 GS", "G 310 GS", "Africa Twin", "Tenere 700", "Versys 650",
+            "V-Strom 650", "V-Strom 800DE", "790 Adventure", "1290 Super Adventure S",
+            "Multistrada V4", "Tiger 900", "Pan America 1250", "Tuareg 660",
+            "NC750X", "KLR 650", "Himalayan 450", "TRK 502X", "650MT", "800MT",
+            "SRT 550", "Norden 901"
         };
 
         private static readonly HashSet<string> ChopperCruiserModels = new()
         {
-            "R 18", "Diavel", "Sportster S", "Iron 883", "Fat Bob 114", "Bonneville T120", "Superlight 125"
+            "R 18", "Diavel", "Sportster S", "Iron 883", "Fat Bob 114",
+            "Bonneville T120", "Superlight 125", "Forty-Eight", "Classic 350",
+            "Meteor 350", "Super Meteor 650"
         };
 
         private static readonly HashSet<string> CrossMotocrossModels = new()
         {
-            "KX 250", "RM-Z450", "SX-F 450", "SMX 125", "TK03"
+            "KX 250", "RM-Z450", "SX-F 450", "SMX 125", "TK03", "ATR 125"
         };
 
         private static readonly HashSet<string> CafeRacerScramblerModels = new()
         {
-            "Scrambler Icon", "Svartpilen 401", "Drift L"
+            "Scrambler Icon", "Svartpilen 401", "Vitpilen 401", "Drift L",
+            "Scrambler 900", "Interceptor 650", "700CL-X", "Leoncino 250"
+        };
+
+        private static readonly HashSet<string> UnderboneCubModels = new()
+        {
+            "Super Cub C125", "Crypton S"
+        };
+
+        private static readonly HashSet<string> ElectricMotorcycleModels = new()
+        {
+            "CE 04", "Elettrica", "NQi GTS", "MQi GT"
+        };
+
+        private static readonly HashSet<string> SupermotoModels = new()
+        {
+            "690 SMC R", "701 Supermoto", "DR-Z400SM", "Hypermotard 950"
         };
 
         private static readonly Dictionary<string, string[]> MotorcycleBrandModels = new()
         {
-            { "BMW", new[] { "R 1250 GS", "S 1000 RR", "F 900 R", "C 400 X", "R 18" } },
-            { "Honda", new[] { "CBR 650R", "CB 650R", "PCX 125", "Forza 250", "Africa Twin", "Gold Wing", "NC750X", "Activa 125" } },
-            { "Yamaha", new[] { "R25", "R6", "MT-07", "MT-09", "NMAX 155", "XMAX 250", "Tenere 700" } },
-            { "Kawasaki", new[] { "Ninja 250", "Ninja 650", "Z650", "Z900", "Versys 650", "KLR 650", "KX 250" } },
-            { "Suzuki", new[] { "GSX-R1000", "GSX-S750", "V-Strom 650", "Burgman 400", "Address 125", "RM-Z450" } },
-            { "KTM", new[] { "390 Duke", "250 Duke", "790 Adventure", "RC 390", "SX-F 450" } },
-            { "Ducati", new[] { "Panigale V2", "Monster", "Multistrada V4", "Scrambler Icon", "Diavel" } },
-            { "Harley-Davidson", new[] { "Sportster S", "Iron 883", "Fat Bob 114", "Street Glide", "Pan America 1250" } },
-            { "Triumph", new[] { "Street Triple RS", "Trident 660", "Tiger 900", "Bonneville T120", "Rocket 3" } },
-            { "Vespa", new[] { "Primavera 150", "Sprint 150", "GTS 300" } },
-            { "Piaggio", new[] { "Liberty 125", "Beverly 400", "MP3 400" } },
-            { "Aprilia", new[] { "RS 660", "Tuono 660", "SR GT 200", "Tuareg 660" } },
-            { "Bajaj", new[] { "Pulsar NS200", "Dominar 400" } },
-            { "TVS", new[] { "Apache RTR 200", "Jupiter 125" } },
-            { "Mondial", new[] { "Drift L", "X-Treme Max 200i", "SMX 125" } },
-            { "Kuba", new[] { "Superlight 125", "Bluebird", "TK03" } },
-            { "Husqvarna", new[] { "Svartpilen 401" } }
+            { "BMW", new[] { "R 1250 GS", "F 850 GS", "G 310 GS", "S 1000 RR", "G 310 R", "F 900 R", "C 400 X", "C 400 GT", "CE 04", "R 18" } },
+            { "Honda", new[] { "CBR 650R", "CBR 500R", "CB 650R", "Hornet 750", "PCX 125", "PCX 160", "Forza 250", "Forza 750", "ADV 350", "Africa Twin", "Gold Wing", "NC750X", "Activa 125", "SH125i", "Super Cub C125" } },
+            { "Yamaha", new[] { "R25", "R3", "R6", "R7", "MT-07", "MT-09", "MT-25", "NMAX 155", "XMAX 250", "XMAX 300", "Tenere 700", "Tracer 9", "Aerox 155", "Crypton S" } },
+            { "Kawasaki", new[] { "Ninja 250", "Ninja 650", "Ninja ZX-6R", "Z650", "Z900", "Versys 650", "KLR 650", "KX 250" } },
+            { "Suzuki", new[] { "GSX-R1000", "GSX-S750", "GSX-8S", "Hayabusa", "V-Strom 650", "V-Strom 800DE", "Burgman 400", "Address 125", "RM-Z450", "DR-Z400SM" } },
+            { "KTM", new[] { "390 Duke", "250 Duke", "790 Adventure", "1290 Super Adventure S", "RC 390", "690 SMC R", "SX-F 450" } },
+            { "Ducati", new[] { "Panigale V2", "Monster", "Multistrada V4", "Scrambler Icon", "Diavel", "Hypermotard 950" } },
+            { "Harley-Davidson", new[] { "Sportster S", "Iron 883", "Fat Bob 114", "Street Glide", "Pan America 1250", "Forty-Eight" } },
+            { "Triumph", new[] { "Street Triple RS", "Trident 660", "Tiger 900", "Bonneville T120", "Rocket 3", "Scrambler 900", "Speed Twin 900" } },
+            { "Vespa", new[] { "Primavera 150", "Sprint 150", "GTS 300", "Elettrica" } },
+            { "Piaggio", new[] { "Liberty 125", "Beverly 400", "MP3 400", "Medley 150" } },
+            { "Aprilia", new[] { "RS 660", "RSV4", "Tuono 660", "SR GT 200", "Tuareg 660" } },
+            { "Bajaj", new[] { "Pulsar NS200", "Pulsar N250", "Dominar 400" } },
+            { "TVS", new[] { "Apache RTR 200", "Apache RR 310", "Jupiter 125", "NTorq 125" } },
+            { "Mondial", new[] { "Drift L", "X-Treme Max 200i", "SMX 125", "Turismo 350i", "Pagani 250i" } },
+            { "Kuba", new[] { "Superlight 125", "Bluebird", "TK03", "VN50 Pro", "ATR 125" } },
+            { "Husqvarna", new[] { "Svartpilen 401", "Vitpilen 401", "Norden 901", "701 Supermoto" } },
+            { "Royal Enfield", new[] { "Classic 350", "Meteor 350", "Hunter 350", "Himalayan 450", "Interceptor 650", "Super Meteor 650" } },
+            { "Benelli", new[] { "TNT 125", "302S", "Leoncino 250", "TRK 502X", "752S" } },
+            { "CFMOTO", new[] { "250NK", "450SR", "650MT", "700CL-X", "800MT" } },
+            { "QJMotor", new[] { "SRK 250", "SRK 550", "SRT 550" } },
+            { "SYM", new[] { "Joymax Z 250", "Jet X 125", "Fiddle 125", "Cruisym 250" } },
+            { "Kymco", new[] { "Agility 125", "Like 125", "Xciting VS 400", "Downtown 250i" } },
+            { "NIU", new[] { "NQi GTS", "MQi GT" } }
         };
 
         private static void MergeMotorcycleBrandModels(Dictionary<string, string[]> brandModels)
@@ -342,6 +377,12 @@ namespace DataAcessLayer.SeedData
                 return bodyTypeMap["Cross / Motocross"];
             if (CafeRacerScramblerModels.Contains(modelName))
                 return bodyTypeMap["Cafe Racer / Scrambler"];
+            if (UnderboneCubModels.Contains(modelName))
+                return bodyTypeMap["Underbone / Cub"];
+            if (ElectricMotorcycleModels.Contains(modelName))
+                return bodyTypeMap["Elektrikli"];
+            if (SupermotoModels.Contains(modelName))
+                return bodyTypeMap["Supermoto"];
 
             return null;
         }
@@ -372,6 +413,9 @@ namespace DataAcessLayer.SeedData
             var cruiserBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Chopper / Cruiser");
             var crossBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Cross / Motocross");
             var scramblerBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Cafe Racer / Scrambler");
+            var underboneBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Underbone / Cub");
+            var electricMotorcycleBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Elektrikli");
+            var supermotoBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Supermoto");
 
             var brandModels = new Dictionary<string, string[]>
             {
@@ -718,7 +762,10 @@ namespace DataAcessLayer.SeedData
                 ["Enduro / Adventure"] = adventureBodyType?.Id,
                 ["Chopper / Cruiser"] = cruiserBodyType?.Id,
                 ["Cross / Motocross"] = crossBodyType?.Id,
-                ["Cafe Racer / Scrambler"] = scramblerBodyType?.Id
+                ["Cafe Racer / Scrambler"] = scramblerBodyType?.Id,
+                ["Underbone / Cub"] = underboneBodyType?.Id,
+                ["Elektrikli"] = electricMotorcycleBodyType?.Id,
+                ["Supermoto"] = supermotoBodyType?.Id
             };
 
             foreach (var brandData in brandModels)
@@ -783,6 +830,9 @@ namespace DataAcessLayer.SeedData
             var cruiserBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Chopper / Cruiser" && b.VehicleTypeId == motosikletVT?.Id);
             var crossBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Cross / Motocross" && b.VehicleTypeId == motosikletVT?.Id);
             var scramblerBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Cafe Racer / Scrambler" && b.VehicleTypeId == motosikletVT?.Id);
+            var underboneBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Underbone / Cub" && b.VehicleTypeId == motosikletVT?.Id);
+            var electricMotorcycleBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Elektrikli" && b.VehicleTypeId == motosikletVT?.Id);
+            var supermotoBodyType = bodyTypes.FirstOrDefault(b => b.Name == "Supermoto" && b.VehicleTypeId == motosikletVT?.Id);
 
             var brandModels = new Dictionary<string, string[]>
             {
@@ -1049,7 +1099,10 @@ namespace DataAcessLayer.SeedData
                 ["Enduro / Adventure"] = adventureBodyType?.Id,
                 ["Chopper / Cruiser"] = cruiserBodyType?.Id,
                 ["Cross / Motocross"] = crossBodyType?.Id,
-                ["Cafe Racer / Scrambler"] = scramblerBodyType?.Id
+                ["Cafe Racer / Scrambler"] = scramblerBodyType?.Id,
+                ["Underbone / Cub"] = underboneBodyType?.Id,
+                ["Elektrikli"] = electricMotorcycleBodyType?.Id,
+                ["Supermoto"] = supermotoBodyType?.Id
             };
 
             var existingBrands = await context.Set<Brand>()
@@ -1142,6 +1195,9 @@ namespace DataAcessLayer.SeedData
             var cruiserBT = bodyTypes.FirstOrDefault(bt => bt.Name == "Chopper / Cruiser" && bt.VehicleTypeId == motosikletVT?.Id);
             var crossBT = bodyTypes.FirstOrDefault(bt => bt.Name == "Cross / Motocross" && bt.VehicleTypeId == motosikletVT?.Id);
             var scramblerBT = bodyTypes.FirstOrDefault(bt => bt.Name == "Cafe Racer / Scrambler" && bt.VehicleTypeId == motosikletVT?.Id);
+            var underboneBT = bodyTypes.FirstOrDefault(bt => bt.Name == "Underbone / Cub" && bt.VehicleTypeId == motosikletVT?.Id);
+            var electricMotorcycleBT = bodyTypes.FirstOrDefault(bt => bt.Name == "Elektrikli" && bt.VehicleTypeId == motosikletVT?.Id);
+            var supermotoBT = bodyTypes.FirstOrDefault(bt => bt.Name == "Supermoto" && bt.VehicleTypeId == motosikletVT?.Id);
 
             var updates = new Dictionary<string, (BodyType? bodyType, HashSet<string> models)>
             {
@@ -1163,7 +1219,10 @@ namespace DataAcessLayer.SeedData
                 { "Enduro / Adventure", (adventureBT, AdventureEnduroModels) },
                 { "Chopper / Cruiser", (cruiserBT, ChopperCruiserModels) },
                 { "Cross / Motocross", (crossBT, CrossMotocrossModels) },
-                { "Cafe Racer / Scrambler", (scramblerBT, CafeRacerScramblerModels) }
+                { "Cafe Racer / Scrambler", (scramblerBT, CafeRacerScramblerModels) },
+                { "Underbone / Cub", (underboneBT, UnderboneCubModels) },
+                { "Elektrikli", (electricMotorcycleBT, ElectricMotorcycleModels) },
+                { "Supermoto", (supermotoBT, SupermotoModels) }
             };
 
             var totalUpdated = 0;
