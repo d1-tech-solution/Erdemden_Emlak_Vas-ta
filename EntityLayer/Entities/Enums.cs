@@ -14,10 +14,11 @@ public enum ListingCategory
 
 public enum ListingStatus
 {
-    Satilik,
-    Satildi,
-    Opsiyonlu,
-    Pasif
+    Satilik = 0,
+    Satildi = 1,
+    Opsiyonlu = 2,
+    Pasif = 3,
+    Kiralandi = 4
 }
 
 public enum BuyerReason
