@@ -34,6 +34,11 @@ public interface IAuthService
     Task<ApiResponseDto> ChangePasswordAsync(Guid userId, ChangePasswordDto changePasswordDto);
 
     /// <summary>
+    /// Profil bilgilerini güncelle (Ad, E-posta)
+    /// </summary>
+    Task<ApiResponseDto<object>> UpdateProfileAsync(Guid userId, UpdateProfileDto updateProfileDto);
+
+    /// <summary>
     /// Kullanıcının tüm oturumlarını sonlandır
     /// </summary>
     Task<ApiResponseDto> RevokeAllTokensAsync(Guid userId);

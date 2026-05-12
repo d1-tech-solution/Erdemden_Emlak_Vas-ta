@@ -201,6 +201,30 @@ public class AuthController : ControllerBase
     }
 
     /// <summary>
+    /// Profil bilgilerini güncelle (Ad, E-posta)
+    /// </summary>
+    [Authorize]
+    [HttpPut("profile")]
+    public async Task<IActionResult> UpdateProfile([FromBody] UpdateProfileDto updateProfileDto)
+    {
+        var userId = GetCurrentUserId();
+
+        if (!userId.HasValue)
+        {
+            return Unauthorized(ApiResponseDto.FailResponse("Kullanıcı bulunamadı"));
+        }
+
+        var result = await _authService.UpdateProfileAsync(userId.Value, updateProfileDto);
+
+        if (!result.Success)
+        {
+            return BadRequest(result);
+        }
+
+        return Ok(result);
+    }
+
+    /// <summary>
     /// Mevcut kullanıcı bilgisi
     /// </summary>
     [Authorize]

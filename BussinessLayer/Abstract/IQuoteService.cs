@@ -11,7 +11,7 @@ public interface IQuoteService
     /// <summary>
     /// Yeni teklif talebi oluştur
     /// </summary>
-    Task<ApiResponseDto<QuoteRequestDto>> CreateQuoteAsync(CreateQuoteRequestDto dto, List<FileUploadDto>? expertReports = null);
+    Task<ApiResponseDto<QuoteRequestDto>> CreateQuoteAsync(CreateQuoteRequestDto dto, List<FileUploadDto>? expertReports = null, Guid? userId = null);
 
     /// <summary>
     /// Tüm teklif taleplerini getir (Admin için)
@@ -19,9 +19,14 @@ public interface IQuoteService
     Task<ApiResponseDto<List<QuoteRequestDto>>> GetAllQuotesAsync();
 
     /// <summary>
-    /// Kullanıcının teklif taleplerini getir (Email ile)
+    /// Kullanıcının teklif taleplerini getir (Email ile - eski kayıtlar için fallback)
     /// </summary>
     Task<ApiResponseDto<List<QuoteRequestDto>>> GetQuotesByEmailAsync(string email);
+
+    /// <summary>
+    /// Kullanıcının teklif taleplerini getir (UserId ile - yeni kayıtlar) + email fallback
+    /// </summary>
+    Task<ApiResponseDto<List<QuoteRequestDto>>> GetMyQuotesAsync(Guid userId, string? email);
 
     /// <summary>
     /// Teklif talebini ID ile getir
@@ -56,7 +61,7 @@ public interface IQuoteService
     /// <summary>
     /// Müşteri teklifi kabul/ret et
     /// </summary>
-    Task<ApiResponseDto<QuoteRequestDto>> RespondToOfferAsync(Guid id, string customerEmail, RespondToOfferDto dto);
+    Task<ApiResponseDto<QuoteRequestDto>> RespondToOfferAsync(Guid id, Guid userId, string? customerEmail, RespondToOfferDto dto);
 }
 
 /// <summary>
