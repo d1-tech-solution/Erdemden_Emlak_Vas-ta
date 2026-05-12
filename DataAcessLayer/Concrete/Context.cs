@@ -195,6 +195,13 @@ namespace DataAcessLayer.Concrete
                 entity.HasIndex(e => e.IsRead);
                 entity.HasIndex(e => e.Date);
                 entity.HasIndex(e => e.Status);
+                entity.HasIndex(e => e.UserId);
+
+                entity.HasOne(e => e.User)
+                    .WithMany()
+                    .HasForeignKey(e => e.UserId)
+                    .OnDelete(DeleteBehavior.SetNull)
+                    .IsRequired(false);
             });
 
             // ==================== EXPERT REPORT (1:N with QuoteRequest) ====================

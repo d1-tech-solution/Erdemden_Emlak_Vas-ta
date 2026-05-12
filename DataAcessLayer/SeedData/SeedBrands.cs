@@ -13,21 +13,24 @@ namespace DataAcessLayer.SeedData
             "iX", "iX1", "iX3",                                 // BMW Elektrikli SUV
             "GLA", "GLB", "GLC", "GLE", "GLS", "G Serisi",   // Mercedes SUV
             "GLC Coupe", "GLE Coupe",                            // Mercedes SUV Coupe
-            "EQA", "EQB", "EQC",                                 // Mercedes Elektrikli SUV
+            "EQA", "EQB", "EQC", "EQE SUV", "EQS SUV",           // Mercedes Elektrikli SUV
             "Q2", "Q3", "Q3 Sportback", "Q5", "Q5 Sportback", // Audi SUV
             "Q7", "Q8", "Q8 e-tron",                            // Audi SUV
+            "Q4 e-tron", "Q4 Sportback e-tron",                 // Audi Elektrikli SUV
+            "Q6 e-tron", "Q6 Sportback e-tron",                 // Audi Elektrikli SUV
             "e-tron", "e-tron GT",                               // Audi Elektrikli
+            "XM",                                                // BMW XM (Performans SUV)
             "Tiguan", "Touareg", "T-Roc",                    // VW
-            "C-HR", "RAV4", "Land Cruiser",                  // Toyota
+            "C-HR", "RAV4", "Corolla Cross", "Yaris Cross", "bZ4X", "Highlander", "Land Cruiser",  // Toyota
             "XC40", "XC60", "XC90",                          // Volvo
             "Model Y", "Model X",                            // Tesla
             "HR-V", "CR-V", "ZR-V", "e:Ny1",                   // Honda SUV
             "Puma", "Kuga", "Explorer",                      // Ford
             "Tucson", "Kona", "Kona Electric", "Santa Fe",      // Hyundai SUV
-            "Bayon", "IONIQ 5", "ix35", "Venue",                  // Hyundai SUV
+            "Bayon", "IONIQ 5", "IONIQ 9", "ix35", "Venue",       // Hyundai SUV
             "Captur", "Kadjar", "Austral", "Koleos",             // Renault SUV
             "Sportage", "Sorento", "Niro", "Stonic",            // Kia SUV
-            "EV6", "EV9", "Niro EV",                             // Kia Elektrikli SUV
+            "EV3", "EV4", "EV5", "EV6", "EV9", "Niro EV",        // Kia Elektrikli SUV
             "Range Rover", "Range Rover Sport", "Range Rover Velar",   // Land Rover
             "Range Rover Evoque", "Discovery", "Discovery Sport",       // Land Rover
             "Defender", "Freelander 2",                                  // Land Rover
@@ -38,11 +41,11 @@ namespace DataAcessLayer.SeedData
             "500X", "Freemont",                                          // Fiat SUV
             "Karoq", "Kodiaq",                                           // Skoda SUV
             "Mokka", "Mokka-e", "Grandland", "Crossland",               // Opel SUV
-            "2008", "3008", "5008", "e-2008",                              // Peugeot SUV
+            "2008", "3008", "5008", "e-2008", "e-3008", "e-5008",         // Peugeot SUV
             "Ateca", "Tarraco",                                          // Seat SUV
             "Formentor", "Terramar",                                     // Cupra SUV
             "T10X",                                                      // Togg SUV
-            "C3 Aircross", "C5 Aircross",                               // Citroen SUV
+            "C3 Aircross", "C5 Aircross", "C5 X", "ë-C3 Aircross",     // Citroen SUV
             "F-Pace", "E-Pace", "I-Pace",                               // Jaguar SUV
             "NX", "RX", "UX", "LX",                                     // Lexus SUV
             "Levante", "Grecale",                                        // Maserati SUV
@@ -61,7 +64,7 @@ namespace DataAcessLayer.SeedData
             "i4", "i5", "i7",                                // BMW Elektrikli Sedan
             "C Serisi", "E Serisi", "S Serisi", "CLA", "EQE", "EQS", // Mercedes Sedan
             "CLS", "AMG GT 4 Kapı",                              // Mercedes Sedan
-            "A4", "A5 Sportback", "A6", "A7 Sportback", "A8", // Audi Sedan
+            "A4", "A5", "A5 Sportback", "A6", "A6 e-tron", "A7 Sportback", "A8", // Audi Sedan
             "Passat", "Jetta", "Arteon",                     // VW
             "Corolla", "Camry",                              // Toyota
             "S60", "S90",                                    // Volvo
@@ -72,13 +75,13 @@ namespace DataAcessLayer.SeedData
             "IONIQ 6",                                           // Hyundai Elektrikli Sedan
             "Megane Sedan", "Fluence", "Talisman",               // Renault Sedan
             "Symbol", "Latitude",                                // Renault Sedan
-            "Cerato", "Stinger", "K5",                           // Kia Sedan
+            "Cerato", "Stinger", "K5", "K4",                      // Kia Sedan
             "Seal", "Han",                                        // BYD Sedan
             "Arrizo 5",                                           // Chery Sedan
             "Linea", "Albea", "Tipo Sedan", "Marea",             // Fiat Sedan
             "Octavia", "Superb",                                     // Skoda Sedan
             "Insignia", "Astra Sedan",                              // Opel Sedan
-            "301", "407", "408", "508",                                 // Peugeot Sedan
+            "301", "407", "408", "508", "e-408",                        // Peugeot Sedan
             "Toledo",                                               // Seat Sedan
             "C-Elysee", "C4 Sedan",                                // Citroen Sedan
             "XE", "XF",                                            // Jaguar Sedan
@@ -96,10 +99,10 @@ namespace DataAcessLayer.SeedData
             "A Serisi", "B Serisi",                              // Mercedes Hatchback
             "A1", "A3",                                      // Audi
             "Golf", "Polo",                                  // VW
-            "Yaris",                                         // Toyota
+            "Yaris", "Aygo X",                               // Toyota
             "Civic HB", "Jazz", "Honda e",                       // Honda Hatchback
             "Fiesta",                                        // Ford
-            "i10", "i20", "i30", "IONIQ HB",                   // Hyundai Hatchback
+            "i10", "i20", "i30", "IONIQ HB", "Inster",           // Hyundai Hatchback
             "Clio", "Megane HB", "Zoe",                          // Renault Hatchback
             "Picanto", "Rio", "Ceed", "ProCeed",                 // Kia Hatchback
             "Dolphin",                                            // BYD Hatchback
@@ -109,11 +112,11 @@ namespace DataAcessLayer.SeedData
             "500", "500e", "Fiat 600e",                           // Fiat Hatchback/Mini
             "Fabia", "Scala", "Rapid",                            // Skoda Hatchback
             "Corsa", "Corsa-e", "Astra", "Astra HB",             // Opel Hatchback
-            "108", "206", "207", "208", "307", "308", "e-208",      // Peugeot Hatchback
+            "108", "206", "207", "208", "307", "308", "e-208", "e-308",  // Peugeot Hatchback
             "Ibiza", "Leon", "Leon HB",                           // Seat Hatchback
             "Born",                                                // Cupra Hatchback
             "T10F",                                                // Togg Hatchback/Fastback
-            "C3", "C4", "C4 X",                                   // Citroen Hatchback
+            "C3", "C4", "C4 X", "ë-C3", "ë-C4", "ë-C4 X", "Ami",  // Citroen Hatchback
             "CT",                                                  // Lexus Hatchback
             "Cooper", "Cooper S", "Cooper SE",                     // Mini Hatchback
             "Swift", "Baleno", "Celerio", "Ignis",                 // Suzuki Hatchback
@@ -136,7 +139,7 @@ namespace DataAcessLayer.SeedData
         {
             "2 Serisi Coupe", "4 Serisi Coupe", "8 Serisi Coupe", "M2", "M4", // BMW
             "CLA Coupe",                                     // Mercedes
-            "C Serisi Coupe", "E Serisi Coupe", "S Serisi Coupe", // Mercedes Coupe
+            "C Serisi Coupe", "E Serisi Coupe", "S Serisi Coupe", "CLE Coupe", // Mercedes Coupe
             "AMG GT Coupe",                                       // Mercedes AMG
             "A5 Coupe", "TT Coupe", "R8 Coupe",                  // Audi Coupe
             "F-Type Coupe",                                        // Jaguar Coupe
@@ -149,7 +152,7 @@ namespace DataAcessLayer.SeedData
         private static readonly HashSet<string> CabrioModels = new()
         {
             "4 Serisi Cabrio",                               // BMW
-            "C Serisi Cabrio", "E Serisi Cabrio", "S Serisi Cabrio", // Mercedes Cabrio
+            "C Serisi Cabrio", "E Serisi Cabrio", "S Serisi Cabrio", "CLE Cabrio", // Mercedes Cabrio
             "A5 Cabrio", "A3 Cabrio",                             // Audi Cabrio
             "500C",                                               // Fiat Cabrio
             "F-Type Cabrio",                                       // Jaguar Cabrio
@@ -176,11 +179,12 @@ namespace DataAcessLayer.SeedData
             "Megane Sport Tourer",                           // Renault
             "Ceed SW",                                           // Kia
             "C Serisi Estate", "E Serisi Estate",                // Mercedes Station Wagon
-            "A4 Avant", "A6 Avant",                               // Audi Station Wagon
+            "A4 Avant", "A5 Avant", "A6 Avant", "A6 e-tron Avant", // Audi Station Wagon
+            "i5 Touring",                                         // BMW Station Wagon
             "Tipo Station Wagon", "Marea Weekend",                // Fiat Station Wagon
             "Octavia Combi", "Superb Combi",                      // Skoda Station Wagon
             "Astra Sports Tourer", "Insignia Sports Tourer",      // Opel Station Wagon
-            "307 SW", "308 SW", "407 SW", "508 SW",                  // Peugeot Station Wagon
+            "307 SW", "308 SW", "407 SW", "508 SW", "e-308 SW",      // Peugeot Station Wagon
             "Leon ST",                                            // Seat Station Wagon
             "Leon Sportstourer",                                  // Cupra Station Wagon
             "C5 Tourer",                                          // Citroen Station Wagon
@@ -205,12 +209,16 @@ namespace DataAcessLayer.SeedData
         private static readonly HashSet<string> MinivanPanelvanModels = new()
         {
             "Boxer", "Rifter", "Partner", "Expert", "Traveller", "Bipper", // Peugeot Ticari/Minivan
+            "e-Rifter", "e-Partner", "e-Expert", "e-Traveller", "e-Boxer", // Peugeot Elektrikli Ticari
             "Berlingo", "SpaceTourer", "Jumpy", "Jumper",        // Citroen Ticari/Minivan
+            "ë-Berlingo", "ë-SpaceTourer", "ë-Jumpy", "ë-Jumper", // Citroen Elektrikli Ticari
             "Alhambra",                                           // Seat Minivan
             "Kangoo", "Scenic", "Grand Scenic",                  // Renault Minivan
             "Kangoo Express", "Master", "Trafic",                // Renault Panelvan/Ticari
             "Staria", "H-1",                                         // Hyundai Minivan
-            "Vito", "V Serisi", "Sprinter",                          // Mercedes Minivan/Ticari
+            "Carnival",                                              // Kia Minivan
+            "Proace", "Proace City", "Proace Verso",                 // Toyota Minivan/Ticari
+            "Vito", "V Serisi", "Sprinter", "EQV", "Citan",          // Mercedes Minivan/Ticari
             "NV300", "NV400",                                            // Nissan Ticari
             "Doblo", "Fiorino", "Ducato", "Scudo",                      // Fiat Ticari/Minivan
             "Doblo Combi", "Fiorino Combi", "Egea MultiWagon",          // Fiat Minivan/SW
@@ -433,8 +441,10 @@ namespace DataAcessLayer.SeedData
                     "Z4",
                     // Crossover
                     "X2", "iX2",
+                    // Station Wagon
+                    "i5 Touring",
                     // SUV
-                    "X1", "X3", "X4", "X5", "X6", "X7",
+                    "X1", "X3", "X4", "X5", "X6", "X7", "XM",
                     // Elektrikli
                     "i4", "i5", "i7", "iX", "iX1", "iX3"
                 } },
@@ -445,23 +455,25 @@ namespace DataAcessLayer.SeedData
                     "C Serisi", "E Serisi", "S Serisi", "CLA", "CLS", "AMG GT 4 Kapı", "EQE", "EQS",
                     // Coupe
                     "CLA Coupe", "C Serisi Coupe", "E Serisi Coupe", "S Serisi Coupe", "AMG GT Coupe",
+                    "CLE Coupe",
                     // Cabrio
                     "C Serisi Cabrio", "E Serisi Cabrio", "S Serisi Cabrio",
+                    "CLE Cabrio",
                     // Roadster
                     "SL", "SLC", "SLK", "AMG GT Roadster",
                     // Station Wagon
                     "C Serisi Estate", "E Serisi Estate",
                     // SUV
                     "GLA", "GLB", "GLC", "GLC Coupe", "GLE", "GLE Coupe", "GLS", "G Serisi",
-                    "EQA", "EQB", "EQC",
+                    "EQA", "EQB", "EQC", "EQE SUV", "EQS SUV",
                     // Minivan & Ticari
-                    "Vito", "V Serisi", "Sprinter"
+                    "Vito", "V Serisi", "Sprinter", "EQV", "Citan"
                 } },
                 { "Audi", new[] {
                     // Hatchback
                     "A1", "A3",
                     // Sedan
-                    "A4", "A5 Sportback", "A6", "A7 Sportback", "A8",
+                    "A4", "A5", "A5 Sportback", "A6", "A6 e-tron", "A7 Sportback", "A8",
                     // Coupe
                     "A5 Coupe", "TT Coupe", "R8 Coupe",
                     // Cabrio
@@ -469,13 +481,25 @@ namespace DataAcessLayer.SeedData
                     // Roadster
                     "TT Roadster", "R8 Spyder",
                     // Station Wagon
-                    "A4 Avant", "A6 Avant",
+                    "A4 Avant", "A5 Avant", "A6 Avant", "A6 e-tron Avant",
                     // SUV
-                    "Q2", "Q3", "Q3 Sportback", "Q5", "Q5 Sportback",
+                    "Q2", "Q3", "Q3 Sportback", "Q4 e-tron", "Q4 Sportback e-tron",
+                    "Q5", "Q5 Sportback", "Q6 e-tron", "Q6 Sportback e-tron",
                     "Q7", "Q8", "Q8 e-tron", "e-tron", "e-tron GT"
                 } },
                 { "Volkswagen", new[] { "Golf", "Polo", "Passat", "Tiguan", "Touareg", "Amarok" } },
-                { "Toyota", new[] { "Corolla", "Yaris", "C-HR", "RAV4", "Hilux", "Land Cruiser" } },
+                { "Toyota", new[] {
+                    // Hatchback
+                    "Corolla", "Yaris", "Aygo X",
+                    // Sedan
+                    "Camry",
+                    // SUV
+                    "C-HR", "RAV4", "Corolla Cross", "Yaris Cross", "bZ4X", "Highlander", "Land Cruiser",
+                    // Pickup
+                    "Hilux",
+                    // Ticari / Minivan
+                    "Proace", "Proace City", "Proace Verso"
+                } },
                 { "Volvo", new[] { "S60", "S90", "XC40", "XC60", "XC90" } },
                 { "Tesla", new[] { "Model 3", "Model Y", "Model S", "Model X" } },
                 { "Honda", new[] {
@@ -489,13 +513,13 @@ namespace DataAcessLayer.SeedData
                 { "Ford", new[] { "Focus", "Fiesta", "Puma", "Kuga", "Ranger" } },
                 { "Hyundai", new[] {
                     // Hatchback
-                    "i10", "i20", "i30", "IONIQ HB",
+                    "i10", "i20", "i30", "IONIQ HB", "Inster",
                     // Sedan
                     "Elantra", "Sonata", "Accent", "Accent Blue", "IONIQ 6",
                     // Crossover
                     "i20 Active",
                     // SUV
-                    "Tucson", "Kona", "Kona Electric", "Santa Fe", "Bayon", "IONIQ 5", "ix35", "Venue",
+                    "Tucson", "Kona", "Kona Electric", "Santa Fe", "Bayon", "IONIQ 5", "IONIQ 9", "ix35", "Venue",
                     // Minivan
                     "Staria", "H-1"
                 } },
@@ -518,7 +542,7 @@ namespace DataAcessLayer.SeedData
                     // Hatchback
                     "Picanto", "Rio", "Ceed", "ProCeed",
                     // Sedan
-                    "Cerato", "Stinger", "K5",
+                    "Cerato", "Stinger", "K5", "K4",
                     // Station Wagon
                     "Ceed SW",
                     // Crossover
@@ -526,19 +550,22 @@ namespace DataAcessLayer.SeedData
                     // SUV
                     "Sportage", "Sorento", "Niro", "Stonic",
                     // Elektrikli SUV
-                    "EV6", "EV9", "Niro EV"
+                    "EV3", "EV4", "EV5", "EV6", "EV9", "Niro EV",
+                    // Minivan
+                    "Carnival"
                 } },
                 { "Peugeot", new[] {
                     // Hatchback
-                    "108", "206", "207", "208", "307", "308", "e-208",
+                    "108", "206", "207", "208", "307", "308", "e-208", "e-308",
                     // Sedan
-                    "301", "407", "408", "508",
+                    "301", "407", "408", "508", "e-408",
                     // Station Wagon
-                    "307 SW", "308 SW", "407 SW", "508 SW",
+                    "307 SW", "308 SW", "407 SW", "508 SW", "e-308 SW",
                     // SUV
-                    "2008", "3008", "5008", "e-2008",
+                    "2008", "3008", "5008", "e-2008", "e-3008", "e-5008",
                     // Minivan/Ticari
-                    "Boxer", "Rifter", "Partner", "Expert", "Traveller", "Bipper"
+                    "Boxer", "Rifter", "Partner", "Expert", "Traveller", "Bipper",
+                    "e-Rifter", "e-Partner", "e-Expert", "e-Traveller", "e-Boxer"
                 } },
                 { "Land Rover", new[] {
                     // SUV
@@ -648,15 +675,16 @@ namespace DataAcessLayer.SeedData
                 } },
                 { "Citroen", new[] {
                     // Hatchback
-                    "C3", "C4", "C4 X",
+                    "C3", "C4", "C4 X", "ë-C3", "ë-C4", "ë-C4 X", "Ami",
                     // Sedan
                     "C-Elysee", "C4 Sedan",
                     // Station Wagon
                     "C5 Tourer",
                     // SUV
-                    "C3 Aircross", "C5 Aircross",
+                    "C3 Aircross", "C5 Aircross", "C5 X", "ë-C3 Aircross",
                     // Minivan/Ticari
-                    "Berlingo", "SpaceTourer", "Jumpy", "Jumper"
+                    "Berlingo", "SpaceTourer", "Jumpy", "Jumper",
+                    "ë-Berlingo", "ë-SpaceTourer", "ë-Jumpy", "ë-Jumper"
                 } },
                 { "Jaguar", new[] {
                     // Sedan
@@ -839,10 +867,10 @@ namespace DataAcessLayer.SeedData
                 { "BMW", new[] {
                     "1 Serisi", "2 Serisi Active Tourer",
                     "2 Serisi Gran Coupe", "7 Serisi", "4 Serisi Gran Coupe",
-                    "8 Serisi Gran Coupe", "i4", "i5", "i7",
+                    "8 Serisi Gran Coupe", "i4", "i5", "i7", "i5 Touring",
                     "2 Serisi Coupe", "4 Serisi Coupe", "8 Serisi Coupe", "M2", "M4",
                     "4 Serisi Cabrio", "Z4",
-                    "X2", "iX2", "X4", "X6", "X7", "iX1", "iX3"
+                    "X2", "iX2", "X4", "X6", "X7", "XM", "iX1", "iX3"
                 } },
                 { "Mercedes", new[] {
                     // Hatchback
@@ -883,13 +911,13 @@ namespace DataAcessLayer.SeedData
                 { "Honda", new[] { "Jazz", "Accord" } },
                 { "Hyundai", new[] {
                     // Hatchback
-                    "i10", "i20", "i30", "IONIQ HB",
+                    "i10", "i20", "i30", "IONIQ HB", "Inster",
                     // Sedan
                     "Elantra", "Sonata", "Accent", "Accent Blue", "IONIQ 6",
                     // Crossover
                     "i20 Active",
                     // SUV
-                    "Tucson", "Kona", "Kona Electric", "Santa Fe", "Bayon", "IONIQ 5", "ix35", "Venue",
+                    "Tucson", "Kona", "Kona Electric", "Santa Fe", "Bayon", "IONIQ 5", "IONIQ 9", "ix35", "Venue",
                     // Minivan
                     "Staria", "H-1"
                 } },
@@ -912,7 +940,7 @@ namespace DataAcessLayer.SeedData
                     // Hatchback
                     "Picanto", "Rio", "Ceed", "ProCeed",
                     // Sedan
-                    "Cerato", "Stinger", "K5",
+                    "Cerato", "Stinger", "K5", "K4",
                     // Station Wagon
                     "Ceed SW",
                     // Crossover
@@ -920,19 +948,22 @@ namespace DataAcessLayer.SeedData
                     // SUV
                     "Sportage", "Sorento", "Niro", "Stonic",
                     // Elektrikli SUV
-                    "EV6", "EV9", "Niro EV"
+                    "EV3", "EV4", "EV5", "EV6", "EV9", "Niro EV",
+                    // Minivan
+                    "Carnival"
                 } },
                 { "Peugeot", new[] {
                     // Hatchback
-                    "108", "206", "207", "208", "307", "308", "e-208",
+                    "108", "206", "207", "208", "307", "308", "e-208", "e-308",
                     // Sedan
-                    "301", "407", "408", "508",
+                    "301", "407", "408", "508", "e-408",
                     // Station Wagon
-                    "307 SW", "308 SW", "407 SW", "508 SW",
+                    "307 SW", "308 SW", "407 SW", "508 SW", "e-308 SW",
                     // SUV
-                    "2008", "3008", "5008", "e-2008",
+                    "2008", "3008", "5008", "e-2008", "e-3008", "e-5008",
                     // Minivan/Ticari
-                    "Boxer", "Rifter", "Partner", "Expert", "Traveller", "Bipper"
+                    "Boxer", "Rifter", "Partner", "Expert", "Traveller", "Bipper",
+                    "e-Rifter", "e-Partner", "e-Expert", "e-Traveller", "e-Boxer"
                 } },
                 { "Land Rover", new[] {
                     // SUV

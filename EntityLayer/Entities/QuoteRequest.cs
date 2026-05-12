@@ -7,6 +7,10 @@ public class QuoteRequest : BaseEntity
 {
     public DateTime Date { get; set; } = DateTime.UtcNow;
 
+    // Teklifi gönderen kullanıcı (login kullanıcıysa). Anonim/eski kayıtlarda null olabilir.
+    public Guid? UserId { get; set; }
+    public virtual User? User { get; set; }
+
     // Araç bilgisi
     [MaxLength(20)]
     public string? Plate { get; set; }

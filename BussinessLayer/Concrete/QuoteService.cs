@@ -27,7 +27,7 @@ public class QuoteService : IQuoteService
     /// <summary>
     /// Yeni teklif talebi oluştur
     /// </summary>
-    public async Task<ApiResponseDto<QuoteRequestDto>> CreateQuoteAsync(CreateQuoteRequestDto dto, List<FileUploadDto>? expertReports = null)
+    public async Task<ApiResponseDto<QuoteRequestDto>> CreateQuoteAsync(CreateQuoteRequestDto dto, List<FileUploadDto>? expertReports = null, Guid? userId = null)
     {
         try
         {
@@ -37,6 +37,7 @@ public class QuoteService : IQuoteService
             var quoteRequest = new QuoteRequest
             {
                 Date = DateTime.UtcNow,
+                UserId = userId,
                 Plate = dto.Plate,
                 Brand = dto.Brand,
                 Model = dto.Model,
@@ -92,6 +93,13 @@ public class QuoteService : IQuoteService
                 var customerName = $"{quoteRequest.FirstName} {quoteRequest.LastName}";
                 await _emailService.SendNewQuoteNotificationToAdminAsync(
                     customerName, vehicleInfo, quoteRequest.Phone, quoteRequest.Email);
+
+                // Müşteriye "teklif alındı" onay maili gönder
+                if (!string.IsNullOrWhiteSpace(quoteRequest.Email))
+                {
+                    await _emailService.SendQuoteReceivedConfirmationEmailAsync(
+                        quoteRequest.Email, customerName, vehicleInfo);
+                }
             }
             catch (Exception)
             {
@@ -126,7 +134,7 @@ public class QuoteService : IQuoteService
     }
 
     /// <summary>
-    /// Kullanıcının teklif taleplerini getir (Email ile)
+    /// Kullanıcının teklif taleplerini getir (Email ile - eski kayıtlar için)
     /// </summary>
     public async Task<ApiResponseDto<List<QuoteRequestDto>>> GetQuotesByEmailAsync(string email)
     {
@@ -135,6 +143,28 @@ public class QuoteService : IQuoteService
             .Include(q => q.ExpertReports)
             .Include(q => q.Media)
             .Where(q => q.Email != null && q.Email.ToLower() == email.ToLower())
+            .OrderByDescending(q => q.Date)
+            .ToListAsync();
+
+        var dtos = quotes.Select(MapToDto).ToList();
+        return ApiResponseDto<List<QuoteRequestDto>>.SuccessResponse(dtos);
+    }
+
+    /// <summary>
+    /// Kullanıcının teklif taleplerini getir (UserId ile - yeni kayıtlar) + email fallback (eski kayıtlar için)
+    /// </summary>
+    public async Task<ApiResponseDto<List<QuoteRequestDto>>> GetMyQuotesAsync(Guid userId, string? email)
+    {
+        var normalizedEmail = email?.Trim().ToLower();
+        var hasEmail = !string.IsNullOrEmpty(normalizedEmail);
+
+        var quotes = await _unitOfWork.Repository<QuoteRequest>()
+            .Query()
+            .Include(q => q.ExpertReports)
+            .Include(q => q.Media)
+            .Where(q =>
+                q.UserId == userId
+                || (hasEmail && q.UserId == null && q.Email != null && q.Email.ToLower() == normalizedEmail))
             .OrderByDescending(q => q.Date)
             .ToListAsync();
 
@@ -352,7 +382,7 @@ public class QuoteService : IQuoteService
     /// <summary>
     /// Müşteri teklifi kabul/ret et
     /// </summary>
-    public async Task<ApiResponseDto<QuoteRequestDto>> RespondToOfferAsync(Guid id, string customerEmail, RespondToOfferDto dto)
+    public async Task<ApiResponseDto<QuoteRequestDto>> RespondToOfferAsync(Guid id, Guid userId, string? customerEmail, RespondToOfferDto dto)
     {
         var quote = await _unitOfWork.Repository<QuoteRequest>()
             .Query()
@@ -363,8 +393,14 @@ public class QuoteService : IQuoteService
         if (quote == null)
             return ApiResponseDto<QuoteRequestDto>.FailResponse("Teklif talebi bulunamadı.");
 
-        // Teklif bu müşteriye mi ait kontrol et
-        if (string.IsNullOrEmpty(quote.Email) || !quote.Email.Equals(customerEmail, StringComparison.OrdinalIgnoreCase))
+        // Teklif bu müşteriye mi ait kontrol et (UserId öncelikli, eski kayıtlar için email fallback)
+        var ownsByUserId = quote.UserId.HasValue && quote.UserId.Value == userId;
+        var ownsByEmail = !quote.UserId.HasValue
+            && !string.IsNullOrEmpty(customerEmail)
+            && !string.IsNullOrEmpty(quote.Email)
+            && quote.Email.Equals(customerEmail, StringComparison.OrdinalIgnoreCase);
+
+        if (!ownsByUserId && !ownsByEmail)
             return ApiResponseDto<QuoteRequestDto>.FailResponse("Bu teklif size ait değil.");
 
         // Teklif verilmiş mi kontrol et

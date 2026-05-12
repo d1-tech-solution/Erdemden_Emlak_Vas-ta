@@ -35,7 +35,15 @@ public class QuotesController : ControllerBase
             Base64Data = r.Data.Contains(",") ? r.Data.Split(',')[1] : r.Data // Base64 data URI formatını handle et
         }).ToList();
 
-        var result = await _quoteService.CreateQuoteAsync(request.Quote, expertReports);
+        // Login kullanıcı varsa quote'u user'a bağla
+        Guid? userId = null;
+        var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
+        if (Guid.TryParse(userIdClaim, out var parsed))
+        {
+            userId = parsed;
+        }
+
+        var result = await _quoteService.CreateQuoteAsync(request.Quote, expertReports, userId);
 
         if (!result.Success)
         {
@@ -123,20 +131,21 @@ public class QuotesController : ControllerBase
     }
 
     /// <summary>
-    /// Kullanıcının kendi teklif taleplerini getir
+    /// Kullanıcının kendi teklif taleplerini getir (UserId + eski kayıtlar için email fallback)
     /// </summary>
     [Authorize]
     [HttpGet("my")]
     public async Task<IActionResult> GetMyQuotes()
     {
+        var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
         var email = User.FindFirst(System.Security.Claims.ClaimTypes.Email)?.Value;
 
-        if (string.IsNullOrEmpty(email))
+        if (!Guid.TryParse(userIdClaim, out var userId))
         {
-            return BadRequest(new { success = false, message = "E-posta bilgisi bulunamadı." });
+            return BadRequest(new { success = false, message = "Kullanıcı bilgisi bulunamadı." });
         }
 
-        var result = await _quoteService.GetQuotesByEmailAsync(email);
+        var result = await _quoteService.GetMyQuotesAsync(userId, email);
         return Ok(result);
     }
 
@@ -215,14 +224,15 @@ public class QuotesController : ControllerBase
     [HttpPut("{id:guid}/respond")]
     public async Task<IActionResult> RespondToOffer(Guid id, [FromBody] RespondToOfferDto dto)
     {
+        var userIdClaim = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
         var email = User.FindFirst(System.Security.Claims.ClaimTypes.Email)?.Value;
 
-        if (string.IsNullOrEmpty(email))
+        if (!Guid.TryParse(userIdClaim, out var userId))
         {
-            return BadRequest(new { success = false, message = "E-posta bilgisi bulunamadı." });
+            return BadRequest(new { success = false, message = "Kullanıcı bilgisi bulunamadı." });
         }
 
-        var result = await _quoteService.RespondToOfferAsync(id, email, dto);
+        var result = await _quoteService.RespondToOfferAsync(id, userId, email, dto);
 
         if (!result.Success)
         {

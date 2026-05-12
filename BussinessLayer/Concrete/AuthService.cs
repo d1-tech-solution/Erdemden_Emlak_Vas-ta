@@ -267,6 +267,56 @@ public class AuthService : IAuthService
     }
 
     /// <summary>
+    /// Profil bilgilerini güncelle (Ad, E-posta)
+    /// </summary>
+    public async Task<ApiResponseDto<object>> UpdateProfileAsync(Guid userId, UpdateProfileDto dto)
+    {
+        var user = await _unitOfWork.Repository<User>().GetByIdAsync(userId);
+        if (user == null)
+        {
+            return ApiResponseDto<object>.FailResponse("Kullanıcı bulunamadı");
+        }
+
+        var name = dto.Name?.Trim() ?? string.Empty;
+        var email = dto.Email?.Trim().ToLowerInvariant() ?? string.Empty;
+
+        if (string.IsNullOrWhiteSpace(name) || name.Length < 2)
+        {
+            return ApiResponseDto<object>.FailResponse("Geçerli bir ad soyad giriniz");
+        }
+        if (string.IsNullOrWhiteSpace(email))
+        {
+            return ApiResponseDto<object>.FailResponse("Geçerli bir e-posta giriniz");
+        }
+
+        // E-posta değişiyorsa benzersizlik kontrolü
+        if (!string.Equals(user.Email, email, StringComparison.OrdinalIgnoreCase))
+        {
+            var existing = await _unitOfWork.Repository<User>().GetAsync(u => u.Email == email && u.Id != userId);
+            if (existing != null)
+            {
+                return ApiResponseDto<object>.FailResponse("Bu e-posta adresi başka bir hesap tarafından kullanılıyor");
+            }
+
+            user.Email = email;
+            // E-posta değiştiğinde doğrulamayı sıfırla (var ise)
+            user.IsEmailVerified = false;
+        }
+
+        user.Name = name;
+        _unitOfWork.Repository<User>().Update(user);
+        await _unitOfWork.SaveChangesAsync();
+
+        return ApiResponseDto<object>.SuccessResponse(new
+        {
+            user.Id,
+            user.Name,
+            user.Email,
+            Role = user.Role.ToString()
+        }, "Profil bilgileri güncellendi");
+    }
+
+    /// <summary>
     /// Kullanıcının tüm oturumlarını sonlandır
     /// </summary>
     public async Task<ApiResponseDto> RevokeAllTokensAsync(Guid userId)

@@ -53,7 +53,56 @@ public class EmailService : IEmailService
                             <p style='color: #059669; font-size: 28px; font-weight: bold; margin: 0;'>{formattedMin} ₺ - {formattedMax} ₺</p>
                         </div>
 
-                        <p style='color: #6b7280; font-size: 14px; margin-top: 20px;'>Teklifimizi hesabınıza giriş yaparak <strong>Tekliflerim</strong> sayfasından kabul veya reddedebilirsiniz.</p>
+                        <p style='color: #6b7280; font-size: 14px; margin-top: 20px;'>Teklifimizi hesabınıza giriş yaparak <strong>Profilim &gt; Tekliflerim</strong> sayfasından kabul veya reddedebilirsiniz.</p>
+
+                        <div style='text-align: center; margin-top: 24px;'>
+                            <a href='{_emailSettings.SiteUrl}/profile?tab=quotes' style='display: inline-block; background: #ea580c; color: white; padding: 12px 32px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 14px;'>Tekliflerimi Görüntüle</a>
+                        </div>
+                    </div>
+                    <p style='color: #9ca3af; font-size: 11px; text-align: center; margin-top: 16px;'>Erdem Otomotiv - Emlak | Bu e-posta otomatik olarak gönderilmiştir.</p>
+                </div>"
+        };
+
+        mailMessage.To.Add(toEmail);
+        await client.SendMailAsync(mailMessage);
+    }
+
+    public async Task SendQuoteReceivedConfirmationEmailAsync(
+        string toEmail, string customerName, string vehicleInfo)
+    {
+        using var client = new SmtpClient(_emailSettings.SmtpServer, _emailSettings.SmtpPort)
+        {
+            Credentials = new NetworkCredential(_emailSettings.SenderEmail, _emailSettings.SenderPassword),
+            EnableSsl = true
+        };
+
+        var mailMessage = new MailMessage
+        {
+            From = new MailAddress(_emailSettings.SenderEmail, _emailSettings.SenderName),
+            Subject = "Teklif Talebiniz İletildi - Erdem Otomotiv",
+            IsBodyHtml = true,
+            Body = $@"
+                <div style='font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 30px; background: #f8f9fa; border-radius: 12px;'>
+                    <div style='text-align: center; margin-bottom: 24px;'>
+                        <h2 style='color: #1B3C87; margin: 0;'>Erdem Otomotiv - Emlak</h2>
+                    </div>
+                    <div style='background: white; padding: 24px; border-radius: 8px; border: 1px solid #e5e7eb;'>
+                        <div style='text-align: center; margin-bottom: 16px;'>
+                            <div style='display: inline-block; width: 64px; height: 64px; background: #dcfce7; border-radius: 50%; line-height: 64px; font-size: 32px;'>✓</div>
+                        </div>
+                        <h3 style='color: #111827; text-align: center; margin: 0 0 8px 0;'>Teklif Talebiniz İletildi!</h3>
+                        <p style='color: #6b7280; font-size: 14px; text-align: center; margin: 0 0 24px 0;'>Sayın <strong>{customerName}</strong>, aracınız için verdiğiniz bilgiler tarafımıza ulaşmıştır.</p>
+
+                        <div style='background: #fef3c7; padding: 16px; border-radius: 8px; margin: 20px 0; text-align: center;'>
+                            <p style='color: #92400e; font-size: 12px; margin: 0 0 8px 0; font-weight: bold; text-transform: uppercase;'>Aracınız</p>
+                            <p style='color: #374151; font-size: 16px; font-weight: bold; margin: 0;'>{vehicleInfo}</p>
+                        </div>
+
+                        <p style='color: #6b7280; font-size: 14px;'>Uzman ekibimiz en kısa sürede aracınızı değerlendirip size özel fiyat teklifimizi iletecektir. Teklifinizin durumunu <strong>Profilim &gt; Tekliflerim</strong> sayfasından takip edebilirsiniz.</p>
+
+                        <div style='text-align: center; margin-top: 24px;'>
+                            <a href='{_emailSettings.SiteUrl}/profile?tab=quotes' style='display: inline-block; background: #ea580c; color: white; padding: 12px 32px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 14px;'>Tekliflerimi Görüntüle</a>
+                        </div>
                     </div>
                     <p style='color: #9ca3af; font-size: 11px; text-align: center; margin-top: 16px;'>Erdem Otomotiv - Emlak | Bu e-posta otomatik olarak gönderilmiştir.</p>
                 </div>"

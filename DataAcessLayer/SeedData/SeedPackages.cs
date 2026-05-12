@@ -1544,7 +1544,77 @@ namespace DataAcessLayer.SeedData
                 { "Lacetti", new[] { "SE", "SX", "CDX", "1.4", "1.6", "1.8", "2.0D" } },
                 { "Captiva", new[] { "LS", "LT", "LTZ", "High", "2.0D", "2.4", "AWD" } },
                 { "Trax", new[] { "LS", "LT", "LTZ", "1.4 Turbo", "1.6", "1.7D" } },
-                { "Trailblazer", new[] { "LS", "LT", "LTZ", "Premier", "1.2 Turbo", "1.3 Turbo", "Activ" } }
+                { "Trailblazer", new[] { "LS", "LT", "LTZ", "Premier", "1.2 Turbo", "1.3 Turbo", "Activ" } },
+
+                // ==================== 2026 TÜRKİYE — YENİ MODEL PAKETLERİ ====================
+
+                // Mercedes 2026 yeni modeller
+                { "CLE Coupe", new[] { "Avantgarde", "AMG Line", "AMG Line Premium", "Edition 1", "Night Paket", "AMG CLE 53", "AMG" } },
+                { "CLE Cabrio", new[] { "Avantgarde", "AMG Line", "AMG Line Premium", "Edition 1", "Night Paket", "AMG CLE 53", "AMG" } },
+                { "EQE SUV", new[] { "Electric Art", "AMG Line", "AMG Line Premium", "Night Paket", "Edition 1", "AMG EQE 53 SUV", "AMG" } },
+                { "EQS SUV", new[] { "Electric Art", "AMG Line", "AMG Line Premium", "Night Paket", "Edition 1", "Maybach", "AMG" } },
+                { "EQV", new[] { "Avantgarde", "Exclusive", "Edition 1", "Night Paket" } },
+                { "Citan", new[] { "Base", "Pro", "Select", "Tourer", "Tourer Pro", "Tourer Select", "Panel Van" } },
+
+                // BMW 2026 yeni modeller
+                { "XM", new[] { "Standart", "50e", "Label Red", "First Edition" } },
+                { "i5 Touring", new[] { "eDrive40", "xDrive40", "M60 xDrive", "M Sport", "M Sport Pro" } },
+
+                // Audi 2026 yeni modeller
+                { "A5", new[] { "Advanced", "S Line", "Edition One", "S5", "RS 5" } },
+                { "A5 Avant", new[] { "Advanced", "S Line", "Edition One", "S5 Avant", "RS 5 Avant" } },
+                { "A6 e-tron", new[] { "Advanced", "S Line", "Edition One", "Performance", "S6 Sportback e-tron" } },
+                { "A6 e-tron Avant", new[] { "Advanced", "S Line", "Edition One", "Performance", "S6 Avant e-tron" } },
+                { "Q4 e-tron", new[] { "Advanced", "S Line", "Edition One", "40", "45", "50 quattro", "SQ4" } },
+                { "Q4 Sportback e-tron", new[] { "Advanced", "S Line", "Edition One", "40", "45", "50 quattro", "SQ4 Sportback" } },
+                { "Q6 e-tron", new[] { "Advanced", "S Line", "Edition One", "Performance", "quattro", "SQ6 e-tron" } },
+                { "Q6 Sportback e-tron", new[] { "Advanced", "S Line", "Edition One", "Performance", "quattro", "SQ6 Sportback e-tron" } },
+
+                // Toyota 2026 yeni modeller
+                { "Corolla Cross", new[] { "Dream", "Vision", "Flame", "Passion", "Passion X-Pack", "GR Sport", "Hybrid Dream", "Hybrid Vision", "Hybrid Flame", "Hybrid Passion" } },
+                { "Yaris Cross", new[] { "Dream", "Vision", "Flame", "Passion", "GR Sport", "Adventure", "Hybrid Dream", "Hybrid Vision", "Hybrid Flame", "Hybrid Passion" } },
+                { "bZ4X", new[] { "Dream", "Vision", "Flame", "Passion", "Premiere Edition", "AWD", "FWD" } },
+                { "Camry", new[] { "Dream", "Vision", "Flame", "Passion", "Premium", "Elegant", "Hybrid Premium", "Hybrid Elegant" } },
+                { "Highlander", new[] { "Dream", "Vision", "Flame", "Passion", "Premium", "Elegant", "Hybrid", "Platinum" } },
+                { "Aygo X", new[] { "Dream", "Vision", "Flame", "Passion", "Air", "Limited", "Undercover" } },
+                { "Proace", new[] { "Active", "Comfort", "Business", "Family", "L1", "L2", "Cargo", "Kombi" } },
+                { "Proace City", new[] { "Active", "Comfort", "Business", "Family", "L1", "L2", "Cargo", "Kombi" } },
+                { "Proace Verso", new[] { "Active", "Comfort", "Business", "Family", "VIP", "L1", "L2" } },
+
+                // Peugeot 2026 elektrikli modeller
+                { "e-308", new[] { "Active", "Allure", "Allure Pack", "GT", "GT Pack", "54 kWh", "115 kW", "156 kW" } },
+                { "e-308 SW", new[] { "Active", "Allure", "Allure Pack", "GT", "GT Pack", "54 kWh" } },
+                { "e-408", new[] { "Active", "Allure", "Allure Pack", "GT", "GT Pack", "58 kWh", "115 kW" } },
+                { "e-3008", new[] { "Allure", "GT", "GT Long Range", "Dual Motor", "73 kWh", "98 kWh" } },
+                { "e-5008", new[] { "Allure", "GT", "GT Long Range", "73 kWh", "98 kWh", "7 Koltuk" } },
+                { "e-Rifter", new[] { "Active", "Allure", "GT Line", "Standard", "Long", "50 kWh" } },
+                { "e-Partner", new[] { "Premium", "Pro", "Asphalt", "Standard", "Long", "Cargo", "50 kWh" } },
+                { "e-Expert", new[] { "Premium", "Pro", "Asphalt", "L1", "L2", "L3", "Cargo", "Kombi", "75 kWh" } },
+                { "e-Traveller", new[] { "Active", "Allure", "Business", "VIP", "L2", "L3", "50 kWh", "75 kWh" } },
+                { "e-Boxer", new[] { "Premium", "Pro", "L2H2", "L3H2", "L4H3", "Cargo", "Kamyonet", "110 kWh" } },
+
+                // Citroen 2026 yeni modeller
+                { "ë-C3", new[] { "You", "Plus", "Max", "Standart Range", "Long Range", "44 kWh" } },
+                { "ë-C3 Aircross", new[] { "You", "Plus", "Max", "Standart Range", "Long Range" } },
+                { "ë-C4", new[] { "Live", "Feel", "Feel Pack", "Shine", "Shine Pack", "50 kWh", "54 kWh" } },
+                { "ë-C4 X", new[] { "Feel", "Feel Pack", "Shine", "Shine Pack", "50 kWh", "54 kWh" } },
+                { "C5 X", new[] { "Feel", "Feel Pack", "Shine", "Shine Pack", "C-Series", "1.2 PureTech", "1.6 PureTech", "Plug-in Hybrid", "Hybrid" } },
+                { "Ami", new[] { "Ami", "Ami Pop", "Ami Tonic", "Ami Vibe", "My Ami Buggy", "My Ami Cargo" } },
+                { "ë-Berlingo", new[] { "Live", "Feel", "Shine", "XL", "M", "50 kWh" } },
+                { "ë-SpaceTourer", new[] { "Live", "Feel", "Shine", "Business", "M", "XL", "50 kWh", "75 kWh" } },
+                { "ë-Jumpy", new[] { "Pro", "Business", "Club", "M", "XL", "XS", "50 kWh", "75 kWh", "Cargo", "Kombi" } },
+                { "ë-Jumper", new[] { "Pro", "Business", "Club", "L1H1", "L2H2", "L3H2", "L4H3", "110 kWh", "Cargo", "Kamyonet" } },
+
+                // Kia 2026 yeni modeller
+                { "EV3", new[] { "Air", "Earth", "GT-Line", "Long Range", "Standard Range" } },
+                { "EV4", new[] { "Air", "Earth", "GT-Line", "GT", "Long Range", "Standard Range" } },
+                { "EV5", new[] { "Air", "Earth", "GT-Line", "Long Range", "Standard Range" } },
+                { "K4", new[] { "Cool", "Comfort", "Elegance", "Premium", "GT-Line", "Style" } },
+                { "Carnival", new[] { "Comfort", "Elegance", "Premium", "GT-Line", "Hybrid", "7 Kişilik", "8 Kişilik", "11 Kişilik" } },
+
+                // Hyundai 2026 yeni modeller
+                { "Inster", new[] { "Pure", "Comfort", "Style", "Inster Cross", "Standard Range", "Long Range" } },
+                { "IONIQ 9", new[] { "Style", "Prime", "Calligraphy", "Performance", "Long Range AWD", "Long Range RWD" } }
             };
 
             MergeMotorcyclePackages(modelPackages);
@@ -2068,7 +2138,170 @@ namespace DataAcessLayer.SeedData
                 ("Chevrolet", "Lacetti", new[] { "SE", "SX", "CDX", "1.4", "1.6", "1.8", "2.0D" }),
                 ("Chevrolet", "Captiva", new[] { "LS", "LT", "LTZ", "High", "2.0D", "2.4", "AWD" }),
                 ("Chevrolet", "Trax", new[] { "LS", "LT", "LTZ", "1.4 Turbo", "1.6", "1.7D" }),
-                ("Chevrolet", "Trailblazer", new[] { "LS", "LT", "LTZ", "Premier", "1.2 Turbo", "1.3 Turbo", "Activ" })
+                ("Chevrolet", "Trailblazer", new[] { "LS", "LT", "LTZ", "Premier", "1.2 Turbo", "1.3 Turbo", "Activ" }),
+
+                // ==================== 2026 TÜRKİYE — YENİ MODELLER & PERFORMANS PAKETLERİ ====================
+
+                // ---- MERCEDES yeni modeller ----
+                ("Mercedes", "CLE Coupe", new[] { "Avantgarde", "AMG Line", "AMG Line Premium", "Edition 1", "Night Paket", "AMG CLE 53", "AMG" }),
+                ("Mercedes", "CLE Cabrio", new[] { "Avantgarde", "AMG Line", "AMG Line Premium", "Edition 1", "Night Paket", "AMG CLE 53", "AMG" }),
+                ("Mercedes", "EQE SUV", new[] { "Electric Art", "AMG Line", "AMG Line Premium", "Night Paket", "Edition 1", "AMG EQE 53 SUV", "AMG" }),
+                ("Mercedes", "EQS SUV", new[] { "Electric Art", "AMG Line", "AMG Line Premium", "Night Paket", "Edition 1", "Maybach", "AMG" }),
+                ("Mercedes", "EQV", new[] { "Avantgarde", "Exclusive", "Edition 1", "Night Paket" }),
+                ("Mercedes", "Citan", new[] { "Base", "Pro", "Select", "Tourer", "Tourer Pro", "Tourer Select", "Panel Van" }),
+
+                // ---- MERCEDES mevcut modellere 2026 performans/yeni paketler ----
+                ("Mercedes", "G Serisi", new[] { "G 580 EQ", "AMG Line Premium Plus" }),
+                ("Mercedes", "C Serisi", new[] { "AMG Line Plus", "AMG C 43", "AMG C 63 S E Performance" }),
+                ("Mercedes", "E Serisi", new[] { "AMG Line Plus", "AMG E 53" }),
+                ("Mercedes", "S Serisi", new[] { "AMG Line Plus", "AMG S 63 E Performance", "Maybach" }),
+                ("Mercedes", "A Serisi", new[] { "AMG Line Premium Plus", "AMG A 35", "AMG A 45 S" }),
+                ("Mercedes", "B Serisi", new[] { "AMG Line Premium Plus" }),
+                ("Mercedes", "CLA", new[] { "AMG CLA 35", "AMG CLA 45 S" }),
+                ("Mercedes", "GLA", new[] { "AMG GLA 35", "AMG GLA 45 S" }),
+                ("Mercedes", "GLB", new[] { "AMG GLB 35" }),
+                ("Mercedes", "GLC", new[] { "AMG GLC 43", "AMG GLC 63 S E Performance" }),
+                ("Mercedes", "GLC Coupe", new[] { "AMG GLC 43 Coupe", "AMG GLC 63 S E Performance Coupe" }),
+                ("Mercedes", "GLE", new[] { "AMG GLE 53", "AMG GLE 63 S" }),
+                ("Mercedes", "GLE Coupe", new[] { "AMG GLE 53 Coupe", "AMG GLE 63 S Coupe" }),
+                ("Mercedes", "GLS", new[] { "AMG GLS 63", "Maybach GLS" }),
+                ("Mercedes", "EQE", new[] { "AMG EQE 43", "AMG EQE 53", "Hyperscreen" }),
+                ("Mercedes", "EQS", new[] { "AMG EQS 53", "Maybach EQS SUV", "Hyperscreen" }),
+
+                // ---- BMW yeni modeller ----
+                ("BMW", "XM", new[] { "Standart", "50e", "Label Red", "First Edition" }),
+                ("BMW", "i5 Touring", new[] { "eDrive40", "xDrive40", "M60 xDrive", "M Sport", "M Sport Pro" }),
+
+                // ---- BMW mevcut modellere 2026 performans paketleri ----
+                ("BMW", "5 Serisi", new[] { "M5", "M5 Touring", "550e xDrive" }),
+                ("BMW", "3 Serisi", new[] { "M3", "M3 Competition", "M3 CS", "M340i xDrive" }),
+                ("BMW", "1 Serisi", new[] { "M135 xDrive", "M140i" }),
+                ("BMW", "2 Serisi Coupe", new[] { "M240i xDrive" }),
+                ("BMW", "8 Serisi Coupe", new[] { "M8", "M8 Competition" }),
+                ("BMW", "8 Serisi Gran Coupe", new[] { "M8 Gran Coupe", "M8 Competition Gran Coupe" }),
+                ("BMW", "4 Serisi Cabrio", new[] { "M8 Cabrio", "M8 Competition Cabrio" }),
+                ("BMW", "X3", new[] { "X3 M", "X3 M Competition", "M50 xDrive" }),
+                ("BMW", "X4", new[] { "X4 M", "X4 M Competition", "M40i" }),
+                ("BMW", "X5", new[] { "X5 M", "X5 M Competition", "M60i xDrive" }),
+                ("BMW", "X6", new[] { "X6 M", "X6 M Competition", "M60i xDrive" }),
+                ("BMW", "X7", new[] { "M60i xDrive" }),
+                ("BMW", "M2", new[] { "M2 CS" }),
+                ("BMW", "iX3", new[] { "eDrive20", "eDrive40", "xDrive30", "M50", "Neue Klasse" }),
+                ("BMW", "i5", new[] { "M5", "M5 Touring" }),
+
+                // ---- AUDI yeni modeller ----
+                ("Audi", "A5", new[] { "Advanced", "S Line", "Edition One", "S5", "RS 5" }),
+                ("Audi", "A5 Avant", new[] { "Advanced", "S Line", "Edition One", "S5 Avant", "RS 5 Avant" }),
+                ("Audi", "A6 e-tron", new[] { "Advanced", "S Line", "Edition One", "Performance", "S6 Sportback e-tron" }),
+                ("Audi", "A6 e-tron Avant", new[] { "Advanced", "S Line", "Edition One", "Performance", "S6 Avant e-tron" }),
+                ("Audi", "Q4 e-tron", new[] { "Advanced", "S Line", "Edition One", "40", "45", "50 quattro", "SQ4" }),
+                ("Audi", "Q4 Sportback e-tron", new[] { "Advanced", "S Line", "Edition One", "40", "45", "50 quattro", "SQ4 Sportback" }),
+                ("Audi", "Q6 e-tron", new[] { "Advanced", "S Line", "Edition One", "Performance", "quattro", "SQ6 e-tron" }),
+                ("Audi", "Q6 Sportback e-tron", new[] { "Advanced", "S Line", "Edition One", "Performance", "quattro", "SQ6 Sportback e-tron" }),
+
+                // ---- AUDI mevcut modellere RS/S performans paketleri ----
+                ("Audi", "A3", new[] { "S3", "RS 3" }),
+                ("Audi", "A4", new[] { "S4", "RS 4 Avant" }),
+                ("Audi", "A4 Avant", new[] { "S4 Avant", "RS 4 Avant" }),
+                ("Audi", "A5 Sportback", new[] { "S5 Sportback", "RS 5 Sportback" }),
+                ("Audi", "A6", new[] { "S6", "RS 6 Avant", "RS 6 Avant Performance" }),
+                ("Audi", "A6 Avant", new[] { "S6 Avant", "RS 6 Avant", "RS 6 Avant Performance" }),
+                ("Audi", "A7 Sportback", new[] { "S7", "RS 7 Sportback", "RS 7 Sportback Performance" }),
+                ("Audi", "A8", new[] { "S8" }),
+                ("Audi", "Q3", new[] { "RS Q3", "RS Q3 Sportback" }),
+                ("Audi", "Q3 Sportback", new[] { "RS Q3 Sportback" }),
+                ("Audi", "Q5", new[] { "SQ5", "SQ5 Sportback" }),
+                ("Audi", "Q5 Sportback", new[] { "SQ5 Sportback" }),
+                ("Audi", "Q7", new[] { "SQ7" }),
+                ("Audi", "Q8", new[] { "SQ8", "RS Q8", "RS Q8 Performance" }),
+                ("Audi", "Q8 e-tron", new[] { "SQ8 e-tron", "SQ8 Sportback e-tron" }),
+                ("Audi", "e-tron GT", new[] { "S e-tron GT", "RS e-tron GT", "RS e-tron GT Performance" }),
+
+                // ---- HONDA mevcut modellere performans paketleri (Type R) ----
+                ("Honda", "Civic HB", new[] { "Type R", "e:HEV Elegance", "e:HEV Executive", "e:HEV Sport Line", "Civic Type R Limited Edition" }),
+                ("Honda", "Civic Sedan", new[] { "e:HEV Elegance", "e:HEV Executive", "e:HEV Sport" }),
+                ("Honda", "HR-V", new[] { "Sport", "e:HEV Sport" }),
+                ("Honda", "CR-V", new[] { "e:HEV Sport Line", "e:PHEV Sport Line" }),
+
+                // ---- TOYOTA yeni modeller ----
+                ("Toyota", "Corolla Cross", new[] { "Dream", "Vision", "Flame", "Passion", "Passion X-Pack", "GR Sport", "Hybrid Dream", "Hybrid Vision", "Hybrid Flame", "Hybrid Passion" }),
+                ("Toyota", "Yaris Cross", new[] { "Dream", "Vision", "Flame", "Passion", "GR Sport", "Adventure", "Hybrid Dream", "Hybrid Vision", "Hybrid Flame", "Hybrid Passion" }),
+                ("Toyota", "bZ4X", new[] { "Dream", "Vision", "Flame", "Passion", "Premiere Edition", "AWD", "FWD" }),
+                ("Toyota", "Camry", new[] { "Dream", "Vision", "Flame", "Passion", "Premium", "Elegant", "Hybrid Premium", "Hybrid Elegant" }),
+                ("Toyota", "Highlander", new[] { "Dream", "Vision", "Flame", "Passion", "Premium", "Elegant", "Hybrid", "Platinum" }),
+                ("Toyota", "Aygo X", new[] { "Dream", "Vision", "Flame", "Passion", "Air", "Limited", "Undercover" }),
+                ("Toyota", "Proace", new[] { "Active", "Comfort", "Business", "Family", "L1", "L2", "Cargo", "Kombi" }),
+                ("Toyota", "Proace City", new[] { "Active", "Comfort", "Business", "Family", "L1", "L2", "Cargo", "Kombi" }),
+                ("Toyota", "Proace Verso", new[] { "Active", "Comfort", "Business", "Family", "VIP", "L1", "L2" }),
+
+                // ---- TOYOTA mevcut modellere 2026 paketleri ----
+                ("Toyota", "Corolla", new[] { "Hybrid Dream", "Hybrid Vision", "Hybrid Flame", "Hybrid Passion", "Hybrid Passion X-Pack", "GR Sport Hybrid" }),
+                ("Toyota", "C-HR", new[] { "GR Sport Premiere Edition", "Hybrid GR Sport", "PHEV" }),
+                ("Toyota", "RAV4", new[] { "PHEV Dream", "PHEV Vision", "PHEV Flame", "PHEV Passion", "Plug-in Hybrid" }),
+                ("Toyota", "Hilux", new[] { "Hybrid 48V", "GR Sport II", "GR Sport III" }),
+                ("Toyota", "Land Cruiser", new[] { "Land Cruiser 250", "Prado", "GR Sport II" }),
+
+                // ---- PEUGEOT yeni elektrikli modeller ----
+                ("Peugeot", "e-308", new[] { "Active", "Allure", "Allure Pack", "GT", "GT Pack", "54 kWh", "115 kW", "156 kW" }),
+                ("Peugeot", "e-308 SW", new[] { "Active", "Allure", "Allure Pack", "GT", "GT Pack", "54 kWh" }),
+                ("Peugeot", "e-408", new[] { "Active", "Allure", "Allure Pack", "GT", "GT Pack", "58 kWh", "115 kW" }),
+                ("Peugeot", "e-3008", new[] { "Allure", "GT", "GT Long Range", "Dual Motor", "73 kWh", "98 kWh" }),
+                ("Peugeot", "e-5008", new[] { "Allure", "GT", "GT Long Range", "73 kWh", "98 kWh", "7 Koltuk" }),
+                ("Peugeot", "e-Rifter", new[] { "Active", "Allure", "GT Line", "Standard", "Long", "50 kWh" }),
+                ("Peugeot", "e-Partner", new[] { "Premium", "Pro", "Asphalt", "Standard", "Long", "Cargo", "50 kWh" }),
+                ("Peugeot", "e-Expert", new[] { "Premium", "Pro", "Asphalt", "L1", "L2", "L3", "Cargo", "Kombi", "75 kWh" }),
+                ("Peugeot", "e-Traveller", new[] { "Active", "Allure", "Business", "VIP", "L2", "L3", "50 kWh", "75 kWh" }),
+                ("Peugeot", "e-Boxer", new[] { "Premium", "Pro", "L2H2", "L3H2", "L4H3", "Cargo", "Kamyonet", "110 kWh" }),
+
+                // ---- PEUGEOT mevcut modellere 2026 paketleri ----
+                ("Peugeot", "208", new[] { "GT Hybrid", "Hybrid 100", "Hybrid 136" }),
+                ("Peugeot", "308", new[] { "Hybrid 136", "Hybrid 145", "GT Hybrid", "PHEV 180", "PHEV 225" }),
+                ("Peugeot", "3008", new[] { "Hybrid 136", "GT Hybrid", "Long Range Electric", "Dual Motor" }),
+                ("Peugeot", "5008", new[] { "Hybrid 136", "GT Hybrid", "Long Range Electric", "7 Koltuk Hybrid" }),
+                ("Peugeot", "408", new[] { "Hybrid 136", "PHEV 180", "PHEV 225" }),
+
+                // ---- CITROEN yeni modeller ----
+                ("Citroen", "ë-C3", new[] { "You", "Plus", "Max", "Standart Range", "Long Range", "44 kWh" }),
+                ("Citroen", "ë-C3 Aircross", new[] { "You", "Plus", "Max", "Standart Range", "Long Range" }),
+                ("Citroen", "ë-C4", new[] { "Live", "Feel", "Feel Pack", "Shine", "Shine Pack", "50 kWh", "54 kWh" }),
+                ("Citroen", "ë-C4 X", new[] { "Feel", "Feel Pack", "Shine", "Shine Pack", "50 kWh", "54 kWh" }),
+                ("Citroen", "C5 X", new[] { "Feel", "Feel Pack", "Shine", "Shine Pack", "C-Series", "1.2 PureTech", "1.6 PureTech", "Plug-in Hybrid", "Hybrid" }),
+                ("Citroen", "Ami", new[] { "Ami", "Ami Pop", "Ami Tonic", "Ami Vibe", "My Ami Buggy", "My Ami Cargo" }),
+                ("Citroen", "ë-Berlingo", new[] { "Live", "Feel", "Shine", "XL", "M", "50 kWh" }),
+                ("Citroen", "ë-SpaceTourer", new[] { "Live", "Feel", "Shine", "Business", "M", "XL", "50 kWh", "75 kWh" }),
+                ("Citroen", "ë-Jumpy", new[] { "Pro", "Business", "Club", "M", "XL", "XS", "50 kWh", "75 kWh", "Cargo", "Kombi" }),
+                ("Citroen", "ë-Jumper", new[] { "Pro", "Business", "Club", "L1H1", "L2H2", "L3H2", "L4H3", "110 kWh", "Cargo", "Kamyonet" }),
+
+                // ---- CITROEN mevcut modellere 2026 paketleri ----
+                ("Citroen", "C3", new[] { "You!", "Plus", "Max" }),
+                ("Citroen", "C5 Aircross", new[] { "Hybrid 136", "Plug-in Hybrid 180", "Plug-in Hybrid 225" }),
+
+                // ---- KIA yeni modeller ----
+                ("Kia", "EV3", new[] { "Air", "Earth", "GT-Line", "Long Range", "Standard Range" }),
+                ("Kia", "EV4", new[] { "Air", "Earth", "GT-Line", "GT", "Long Range", "Standard Range" }),
+                ("Kia", "EV5", new[] { "Air", "Earth", "GT-Line", "Long Range", "Standard Range" }),
+                ("Kia", "K4", new[] { "Cool", "Comfort", "Elegance", "Premium", "GT-Line", "Style" }),
+                ("Kia", "Carnival", new[] { "Comfort", "Elegance", "Premium", "GT-Line", "Hybrid", "7 Kişilik", "8 Kişilik", "11 Kişilik" }),
+
+                // ---- KIA mevcut modellere 2026 paketleri ----
+                ("Kia", "Sportage", new[] { "GT-Line Plus", "Prestige", "Hybrid", "PHEV" }),
+                ("Kia", "Sorento", new[] { "Hybrid", "PHEV", "Prestige" }),
+                ("Kia", "EV6", new[] { "GT", "GT-Line AWD", "Air RWD", "Air AWD", "Earth", "Long Range AWD" }),
+                ("Kia", "EV9", new[] { "Air RWD", "Air AWD", "Earth", "GT-Line", "GT" }),
+                ("Kia", "Niro EV", new[] { "GT-Line", "Long Range AWD" }),
+
+                // ---- HYUNDAI yeni modeller ----
+                ("Hyundai", "Inster", new[] { "Pure", "Comfort", "Style", "Inster Cross", "Standard Range", "Long Range" }),
+                ("Hyundai", "IONIQ 9", new[] { "Style", "Prime", "Calligraphy", "Performance", "Long Range AWD", "Long Range RWD" }),
+
+                // ---- HYUNDAI mevcut modellere N/PHEV/2026 paketleri ----
+                ("Hyundai", "i20", new[] { "i20 N", "N Line Plus" }),
+                ("Hyundai", "i30", new[] { "i30 N", "i30 N Performance", "N Line Plus" }),
+                ("Hyundai", "Kona", new[] { "Kona N", "N Line Plus", "Hybrid" }),
+                ("Hyundai", "Tucson", new[] { "Style Plus", "N Line Plus", "PHEV", "Hybrid", "Elite Plus" }),
+                ("Hyundai", "Santa Fe", new[] { "XRT", "Hybrid Calligraphy", "PHEV", "Calligraphy AWD" }),
+                ("Hyundai", "IONIQ 5", new[] { "IONIQ 5 N", "Long Range AWD", "Long Range RWD", "Standard Range RWD" }),
+                ("Hyundai", "IONIQ 6", new[] { "IONIQ 6 N", "Long Range AWD", "Long Range RWD" })
             };
 
             newPackages.AddRange(MotorcyclePackageEntries);
