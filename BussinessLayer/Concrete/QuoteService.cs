@@ -31,21 +31,39 @@ public class QuoteService : IQuoteService
     {
         try
         {
+            var requestType = ParseRequestType(dto.RequestType);
+            var validationError = ValidateCreateQuote(dto, requestType);
+            if (validationError != null)
+                return ApiResponseDto<QuoteRequestDto>.FailResponse(validationError);
+
             await _unitOfWork.BeginTransactionAsync();
 
             // QuoteRequest oluştur
             var quoteRequest = new QuoteRequest
             {
                 Date = DateTime.UtcNow,
+                RequestType = requestType,
                 UserId = userId,
-                Plate = dto.Plate,
-                Brand = dto.Brand,
-                Model = dto.Model,
+                Plate = dto.Plate?.Trim(),
+                Brand = dto.Brand?.Trim(),
+                Model = dto.Model?.Trim(),
                 Year = dto.Year,
                 Km = dto.Km,
                 Gear = dto.Gear,
                 Fuel = dto.Fuel,
                 Damage = dto.Damage,
+                RealEstateCategory = dto.RealEstateCategory.HasValue ? (RealEstateCategory)dto.RealEstateCategory.Value : null,
+                RealEstateListingType = dto.RealEstateListingType.HasValue ? (RealEstateListingType)dto.RealEstateListingType.Value : null,
+                RealEstateTitle = dto.RealEstateTitle?.Trim(),
+                City = dto.City?.Trim(),
+                District = dto.District?.Trim(),
+                Neighborhood = dto.Neighborhood?.Trim(),
+                Address = dto.Address?.Trim(),
+                Size = dto.Size,
+                RoomCount = dto.RoomCount?.Trim(),
+                DesiredMinPrice = dto.DesiredMinPrice,
+                DesiredMaxPrice = dto.DesiredMaxPrice,
+                Notes = dto.Notes?.Trim(),
                 FirstName = dto.FirstName,
                 LastName = dto.LastName,
                 Phone = dto.Phone,
@@ -89,7 +107,7 @@ public class QuoteService : IQuoteService
             // Admin'e yeni teklif bildirimi gönder
             try
             {
-                var vehicleInfo = $"{quoteRequest.Year} {quoteRequest.Brand} {quoteRequest.Model} - {quoteRequest.Plate}";
+                var vehicleInfo = GetQuoteInfo(quoteRequest);
                 var customerName = $"{quoteRequest.FirstName} {quoteRequest.LastName}";
                 await _emailService.SendNewQuoteNotificationToAdminAsync(
                     customerName, vehicleInfo, quoteRequest.Phone, quoteRequest.Email);
@@ -362,7 +380,7 @@ public class QuoteService : IQuoteService
         {
             try
             {
-                var vehicleInfo = $"{quote.Year} {quote.Brand} {quote.Model} - {quote.Plate}";
+                var vehicleInfo = GetQuoteInfo(quote);
                 var customerName = $"{quote.FirstName} {quote.LastName}";
                 await _emailService.SendOfferNotificationEmailAsync(
                     quote.Email, customerName, vehicleInfo,
@@ -417,7 +435,7 @@ public class QuoteService : IQuoteService
         // Admin'e kabul/red bildirimi gönder
         try
         {
-            var vehicleInfo = $"{quote.Year} {quote.Brand} {quote.Model} - {quote.Plate}";
+            var vehicleInfo = GetQuoteInfo(quote);
             var customerName = $"{quote.FirstName} {quote.LastName}";
             await _emailService.SendQuoteResponseNotificationToAdminAsync(
                 customerName, vehicleInfo, dto.Accepted);
@@ -442,6 +460,7 @@ public class QuoteService : IQuoteService
             Id = quote.Id,
             Date = quote.Date,
             IsRead = quote.IsRead,
+            RequestType = quote.RequestType.ToString(),
             Plate = quote.Plate ?? string.Empty,
             Brand = quote.Brand ?? string.Empty,
             Model = quote.Model ?? string.Empty,
@@ -450,6 +469,20 @@ public class QuoteService : IQuoteService
             Gear = quote.Gear,
             Fuel = quote.Fuel,
             Damage = quote.Damage,
+            RealEstateCategory = quote.RealEstateCategory.HasValue ? (int)quote.RealEstateCategory.Value : null,
+            RealEstateCategoryText = quote.RealEstateCategory?.ToString(),
+            RealEstateListingType = quote.RealEstateListingType.HasValue ? (int)quote.RealEstateListingType.Value : null,
+            RealEstateListingTypeText = quote.RealEstateListingType?.ToString(),
+            RealEstateTitle = quote.RealEstateTitle,
+            City = quote.City,
+            District = quote.District,
+            Neighborhood = quote.Neighborhood,
+            Address = quote.Address,
+            Size = quote.Size,
+            RoomCount = quote.RoomCount,
+            DesiredMinPrice = quote.DesiredMinPrice,
+            DesiredMaxPrice = quote.DesiredMaxPrice,
+            Notes = quote.Notes,
             FirstName = quote.FirstName,
             LastName = quote.LastName,
             Phone = quote.Phone,
@@ -491,5 +524,55 @@ public class QuoteService : IQuoteService
         };
 
         return dto;
+    }
+
+    private static QuoteRequestType ParseRequestType(string? requestType)
+    {
+        return string.Equals(requestType, "RealEstate", StringComparison.OrdinalIgnoreCase)
+            ? QuoteRequestType.RealEstate
+            : QuoteRequestType.Vehicle;
+    }
+
+    private static string? ValidateCreateQuote(CreateQuoteRequestDto dto, QuoteRequestType requestType)
+    {
+        if (requestType == QuoteRequestType.Vehicle)
+        {
+            if (string.IsNullOrWhiteSpace(dto.Plate))
+                return "Plaka gereklidir.";
+            if (string.IsNullOrWhiteSpace(dto.Brand))
+                return "Marka gereklidir.";
+            if (string.IsNullOrWhiteSpace(dto.Model))
+                return "Model gereklidir.";
+            return null;
+        }
+
+        if (!dto.RealEstateCategory.HasValue || !Enum.IsDefined(typeof(RealEstateCategory), dto.RealEstateCategory.Value))
+            return "Emlak kategorisi gereklidir.";
+        if (!dto.RealEstateListingType.HasValue || !Enum.IsDefined(typeof(RealEstateListingType), dto.RealEstateListingType.Value))
+            return "Satilik/kiralik bilgisi gereklidir.";
+        if (!dto.DesiredMinPrice.HasValue || !dto.DesiredMaxPrice.HasValue || dto.DesiredMinPrice <= 0 || dto.DesiredMaxPrice <= 0)
+            return "Istenen fiyat araligi gereklidir.";
+        if (dto.DesiredMinPrice > dto.DesiredMaxPrice)
+            return "Minimum fiyat, maksimum fiyattan buyuk olamaz.";
+
+        return null;
+    }
+
+    private static string GetQuoteInfo(QuoteRequest quote)
+    {
+        if (quote.RequestType == QuoteRequestType.RealEstate)
+        {
+            var category = quote.RealEstateCategory?.ToString() ?? "Emlak";
+            var listingType = quote.RealEstateListingType?.ToString();
+            var location = string.Join(" / ", new[] { quote.Neighborhood, quote.District, quote.City }.Where(x => !string.IsNullOrWhiteSpace(x)));
+            var title = string.IsNullOrWhiteSpace(quote.RealEstateTitle) ? category : quote.RealEstateTitle;
+            var price = quote.DesiredMinPrice.HasValue && quote.DesiredMaxPrice.HasValue
+                ? $"{quote.DesiredMinPrice.Value:N0} TL - {quote.DesiredMaxPrice.Value:N0} TL"
+                : null;
+
+            return string.Join(" - ", new[] { listingType, title, location, price }.Where(x => !string.IsNullOrWhiteSpace(x)));
+        }
+
+        return $"{quote.Year} {quote.Brand} {quote.Model} - {quote.Plate}".Trim();
     }
 }

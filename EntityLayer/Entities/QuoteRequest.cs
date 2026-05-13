@@ -6,6 +6,7 @@ namespace EntityLayer.Entities;
 public class QuoteRequest : BaseEntity
 {
     public DateTime Date { get; set; } = DateTime.UtcNow;
+    public QuoteRequestType RequestType { get; set; } = QuoteRequestType.Vehicle;
 
     // Teklifi gönderen kullanıcı (login kullanıcıysa). Anonim/eski kayıtlarda null olabilir.
     public Guid? UserId { get; set; }
@@ -35,6 +36,38 @@ public class QuoteRequest : BaseEntity
 
     [MaxLength(500)]
     public string? Damage { get; set; }
+
+    public RealEstateCategory? RealEstateCategory { get; set; }
+    public RealEstateListingType? RealEstateListingType { get; set; }
+
+    [MaxLength(200)]
+    public string? RealEstateTitle { get; set; }
+
+    [MaxLength(100)]
+    public string? City { get; set; }
+
+    [MaxLength(100)]
+    public string? District { get; set; }
+
+    [MaxLength(100)]
+    public string? Neighborhood { get; set; }
+
+    [MaxLength(500)]
+    public string? Address { get; set; }
+
+    public int? Size { get; set; }
+
+    [MaxLength(50)]
+    public string? RoomCount { get; set; }
+
+    [Column(TypeName = "decimal(18,2)")]
+    public decimal? DesiredMinPrice { get; set; }
+
+    [Column(TypeName = "decimal(18,2)")]
+    public decimal? DesiredMaxPrice { get; set; }
+
+    [MaxLength(1000)]
+    public string? Notes { get; set; }
 
     // Müşteri bilgisi
     [Required]

@@ -10,6 +10,7 @@ public class QuoteRequestDto
     public Guid Id { get; set; }
     public DateTime Date { get; set; }
     public bool IsRead { get; set; }
+    public string RequestType { get; set; } = "Vehicle";
 
     // Araç bilgileri
     public string Plate { get; set; } = string.Empty;
@@ -20,6 +21,22 @@ public class QuoteRequestDto
     public string? Gear { get; set; }
     public string? Fuel { get; set; }
     public string? Damage { get; set; }
+
+    // Emlak bilgileri
+    public int? RealEstateCategory { get; set; }
+    public string? RealEstateCategoryText { get; set; }
+    public int? RealEstateListingType { get; set; }
+    public string? RealEstateListingTypeText { get; set; }
+    public string? RealEstateTitle { get; set; }
+    public string? City { get; set; }
+    public string? District { get; set; }
+    public string? Neighborhood { get; set; }
+    public string? Address { get; set; }
+    public int? Size { get; set; }
+    public string? RoomCount { get; set; }
+    public decimal? DesiredMinPrice { get; set; }
+    public decimal? DesiredMaxPrice { get; set; }
+    public string? Notes { get; set; }
 
     // İletişim bilgileri
     public string FirstName { get; set; } = string.Empty;

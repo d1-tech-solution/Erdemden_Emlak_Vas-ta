@@ -45,6 +45,12 @@ public enum QuoteStatus
     Rejected    // Reddedildi
 }
 
+public enum QuoteRequestType
+{
+    Vehicle = 0,
+    RealEstate = 1
+}
+
 public enum RealEstateCategory
 {
     Konut = 0,
