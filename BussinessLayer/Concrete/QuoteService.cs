@@ -15,7 +15,7 @@ public class QuoteService : IQuoteService
 {
     private readonly IUnitOfWork _unitOfWork;
     private readonly IEmailService _emailService;
-    private const string UploadBasePath = "Uploads/QuoteMedia";
+    private const string UploadBasePath = "uploads/quote-media";
     private const int MaxBase64FileSizeMB = 20; // Maksimum dosya boyutu (MB)
 
     public QuoteService(IUnitOfWork unitOfWork, IEmailService emailService)
@@ -240,10 +240,11 @@ public class QuoteService : IQuoteService
             return ApiResponseDto.FailResponse("Teklif talebi bulunamadı.");
 
         // Video dosyalarını diskten sil
-        foreach (var media in quote.Media.Where(m => m.MediaType == "Video" && !string.IsNullOrEmpty(m.FilePath)))
+        foreach (var media in quote.Media.Where(m => !string.IsNullOrEmpty(m.FilePath)))
         {
-            if (File.Exists(media.FilePath!))
-                File.Delete(media.FilePath!);
+            var filePath = GetMediaPhysicalPath(media.FilePath!);
+            if (File.Exists(filePath))
+                File.Delete(filePath);
         }
 
         // Quote klasörünü sil (varsa)
@@ -290,7 +291,7 @@ public class QuoteService : IQuoteService
                     FileSize = file.FileSize
                 };
 
-                if (file.MediaType == "Photo")
+                if (file.MediaType == "Photo" && quote.RequestType == QuoteRequestType.Vehicle)
                 {
                     // Fotoğrafları DB'de sakla
                     using var ms = new MemoryStream();
@@ -309,7 +310,7 @@ public class QuoteService : IQuoteService
                     using var fs = new FileStream(filePath, FileMode.Create);
                     await file.FileStream.CopyToAsync(fs);
 
-                    media.FilePath = filePath;
+                    media.FilePath = ToRelativeMediaUrl(filePath);
                 }
 
                 await _unitOfWork.Repository<QuoteMedia>().AddAsync(media);
@@ -332,17 +333,17 @@ public class QuoteService : IQuoteService
         var media = await _unitOfWork.Repository<QuoteMedia>().GetByIdAsync(mediaId);
         if (media == null) return null;
 
-        byte[]? data;
-        if (media.MediaType == "Photo")
+        var data = media.Data;
+        if (data == null)
         {
-            data = media.Data;
-        }
-        else
-        {
-            if (string.IsNullOrEmpty(media.FilePath) || !File.Exists(media.FilePath))
+            if (string.IsNullOrEmpty(media.FilePath))
                 return null;
 
-            data = await File.ReadAllBytesAsync(media.FilePath);
+            var filePath = GetMediaPhysicalPath(media.FilePath);
+            if (!File.Exists(filePath))
+                return null;
+
+            data = await File.ReadAllBytesAsync(filePath);
         }
 
         return (data, media.FileName, media.ContentType);
@@ -531,6 +532,20 @@ public class QuoteService : IQuoteService
         return string.Equals(requestType, "RealEstate", StringComparison.OrdinalIgnoreCase)
             ? QuoteRequestType.RealEstate
             : QuoteRequestType.Vehicle;
+    }
+
+    private static string ToRelativeMediaUrl(string filePath)
+    {
+        return "/" + filePath.Replace("\\", "/").TrimStart('/');
+    }
+
+    private static string GetMediaPhysicalPath(string filePath)
+    {
+        if (Path.IsPathRooted(filePath) && !filePath.StartsWith('/'))
+            return filePath;
+
+        var relativePath = filePath.TrimStart('/').Replace("/", Path.DirectorySeparatorChar.ToString());
+        return Path.Combine(Directory.GetCurrentDirectory(), relativePath);
     }
 
     private static string? ValidateCreateQuote(CreateQuoteRequestDto dto, QuoteRequestType requestType)
