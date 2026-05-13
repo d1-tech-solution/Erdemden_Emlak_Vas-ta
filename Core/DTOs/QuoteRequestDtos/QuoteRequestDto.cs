@@ -34,6 +34,10 @@ public class QuoteRequestDto
     public string? Address { get; set; }
     public int? Size { get; set; }
     public string? RoomCount { get; set; }
+    public int? BuildingAge { get; set; }
+    public string? OccupancyPermitStatus { get; set; }
+    public string? BusinessType { get; set; }
+    public string? LandZoningStatus { get; set; }
     public decimal? DesiredMinPrice { get; set; }
     public decimal? DesiredMaxPrice { get; set; }
     public string? Notes { get; set; }

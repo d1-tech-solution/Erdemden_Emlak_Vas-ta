@@ -60,6 +60,17 @@ public class QuoteRequest : BaseEntity
     [MaxLength(50)]
     public string? RoomCount { get; set; }
 
+    public int? BuildingAge { get; set; }
+
+    [MaxLength(50)]
+    public string? OccupancyPermitStatus { get; set; }
+
+    [MaxLength(100)]
+    public string? BusinessType { get; set; }
+
+    [MaxLength(50)]
+    public string? LandZoningStatus { get; set; }
+
     [Column(TypeName = "decimal(18,2)")]
     public decimal? DesiredMinPrice { get; set; }
 

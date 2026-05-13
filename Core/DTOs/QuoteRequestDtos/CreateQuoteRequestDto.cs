@@ -57,6 +57,17 @@ public class CreateQuoteRequestDto
     [StringLength(50)]
     public string? RoomCount { get; set; }
 
+    public int? BuildingAge { get; set; }
+
+    [StringLength(50)]
+    public string? OccupancyPermitStatus { get; set; }
+
+    [StringLength(100)]
+    public string? BusinessType { get; set; }
+
+    [StringLength(50)]
+    public string? LandZoningStatus { get; set; }
+
     public decimal? DesiredMinPrice { get; set; }
     public decimal? DesiredMaxPrice { get; set; }
 

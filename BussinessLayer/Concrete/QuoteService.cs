@@ -61,6 +61,10 @@ public class QuoteService : IQuoteService
                 Address = dto.Address?.Trim(),
                 Size = dto.Size,
                 RoomCount = dto.RoomCount?.Trim(),
+                BuildingAge = dto.BuildingAge,
+                OccupancyPermitStatus = dto.OccupancyPermitStatus?.Trim(),
+                BusinessType = dto.BusinessType?.Trim(),
+                LandZoningStatus = dto.LandZoningStatus?.Trim(),
                 DesiredMinPrice = dto.DesiredMinPrice,
                 DesiredMaxPrice = dto.DesiredMaxPrice,
                 Notes = dto.Notes?.Trim(),
@@ -481,6 +485,10 @@ public class QuoteService : IQuoteService
             Address = quote.Address,
             Size = quote.Size,
             RoomCount = quote.RoomCount,
+            BuildingAge = quote.BuildingAge,
+            OccupancyPermitStatus = quote.OccupancyPermitStatus,
+            BusinessType = quote.BusinessType,
+            LandZoningStatus = quote.LandZoningStatus,
             DesiredMinPrice = quote.DesiredMinPrice,
             DesiredMaxPrice = quote.DesiredMaxPrice,
             Notes = quote.Notes,
@@ -581,11 +589,23 @@ public class QuoteService : IQuoteService
             var listingType = quote.RealEstateListingType?.ToString();
             var location = string.Join(" / ", new[] { quote.Neighborhood, quote.District, quote.City }.Where(x => !string.IsNullOrWhiteSpace(x)));
             var title = string.IsNullOrWhiteSpace(quote.RealEstateTitle) ? category : quote.RealEstateTitle;
+            var detail = quote.RealEstateCategory switch
+            {
+                RealEstateCategory.Konut => string.Join(", ", new[]
+                {
+                    quote.RoomCount,
+                    quote.BuildingAge.HasValue ? $"{quote.BuildingAge} yas" : null,
+                    quote.OccupancyPermitStatus
+                }.Where(x => !string.IsNullOrWhiteSpace(x))),
+                RealEstateCategory.IsYeri => quote.BusinessType,
+                RealEstateCategory.Arsa => quote.LandZoningStatus,
+                _ => null
+            };
             var price = quote.DesiredMinPrice.HasValue && quote.DesiredMaxPrice.HasValue
                 ? $"{quote.DesiredMinPrice.Value:N0} TL - {quote.DesiredMaxPrice.Value:N0} TL"
                 : null;
 
-            return string.Join(" - ", new[] { listingType, title, location, price }.Where(x => !string.IsNullOrWhiteSpace(x)));
+            return string.Join(" - ", new[] { listingType, title, detail, location, price }.Where(x => !string.IsNullOrWhiteSpace(x)));
         }
 
         return $"{quote.Year} {quote.Brand} {quote.Model} - {quote.Plate}".Trim();
