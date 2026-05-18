@@ -11,7 +11,8 @@ namespace DataAcessLayer.SeedData
             { "Otomobil", new[] { "Sedan", "Hatchback", "Station Wagon", "Coupe", "Cabrio", "Roadster" } },
             { "SUV & Arazi Araçları", new[] { "SUV", "Pickup", "Crossover", "Arazi Aracı" } },
             { "Motosiklet", new[] { "Scooter", "Maxi Scooter", "Naked", "Sport", "Touring", "Enduro / Adventure", "Chopper / Cruiser", "Cross / Motocross", "Cafe Racer / Scrambler", "Underbone / Cub", "Elektrikli", "Supermoto" } },
-            { "Ticari Araçlar", new[] { "Minibüs & Midibüs", "Otobüs", "Kamyon & Kamyonet", "Çekici", "Dorse", "Römork", "Karoser & Üst Yapı", "Oto Kurtarıcı & Taşıyıcı", "Ticari Hat & Ticari Plaka", "Minivan", "Panelvan" } }
+            { "Minivan & Panelvan", new[] { "Minivan", "Panelvan" } },
+            { "Ticari Araçlar", new[] { "Minibüs & Midibüs", "Otobüs", "Kamyon & Kamyonet", "Çekici", "Dorse", "Römork", "Karoser & Üst Yapı", "Oto Kurtarıcı & Taşıyıcı", "Ticari Hat & Ticari Plaka" } }
         };
 
         public static async Task SeedAsync(Context context)
@@ -96,8 +97,9 @@ namespace DataAcessLayer.SeedData
         }
 
         /// <summary>
-        /// "Minivan & Panelvan" gövde tipini kullanan Vehicle ve Model kayıtlarını yeni "Ticari Araçlar > Minivan"
-        /// gövde tipine taşır, ardından eski kaydı siler. Idempotent — eski kayıt yoksa hiçbir şey yapmaz.
+        /// Eski "SUV & Arazi Araçları > Minivan & Panelvan" gövde tipini kullanan Vehicle ve Model kayıtlarını
+        /// yeni "Minivan & Panelvan > Minivan" gövde tipine taşır, ardından eski kaydı siler.
+        /// Idempotent — eski kayıt yoksa hiçbir şey yapmaz.
         /// </summary>
         public static async Task MigrateLegacyMinivanPanelvanAsync(Context context)
         {
@@ -107,13 +109,13 @@ namespace DataAcessLayer.SeedData
             if (legacyBodyType == null)
                 return;
 
-            var ticariVehicleType = await context.Set<VehicleType>()
-                .FirstOrDefaultAsync(vt => vt.Name == "Ticari Araçlar");
-            if (ticariVehicleType == null)
+            var minivanPanelvanVehicleType = await context.Set<VehicleType>()
+                .FirstOrDefaultAsync(vt => vt.Name == "Minivan & Panelvan");
+            if (minivanPanelvanVehicleType == null)
                 return;
 
             var targetBodyType = await context.Set<BodyType>()
-                .FirstOrDefaultAsync(bt => bt.VehicleTypeId == ticariVehicleType.Id && bt.Name == "Minivan");
+                .FirstOrDefaultAsync(bt => bt.VehicleTypeId == minivanPanelvanVehicleType.Id && bt.Name == "Minivan");
             if (targetBodyType == null)
                 return;
 
@@ -124,7 +126,7 @@ namespace DataAcessLayer.SeedData
             foreach (var vehicle in affectedVehicles)
             {
                 vehicle.BodyTypeId = targetBodyType.Id;
-                vehicle.VehicleTypeId = ticariVehicleType.Id;
+                vehicle.VehicleTypeId = minivanPanelvanVehicleType.Id;
             }
 
             // Model kayıtlarını da yeni body type'a taşı (FK_Models_BodyTypes_BodyTypeId yüzünden silmeden önce şart)
