@@ -1277,19 +1277,34 @@ namespace DataAcessLayer.SeedData
             Console.WriteLine($"[Seed] === Total models updated: {totalUpdated} ===");
 
             // Yanlış VehicleType'a ait orphan BodyType'ları temizle (duplicate olanlar)
-            await CleanupOrphanBodyTypesAsync(context, otomobilVT, suvAraziVT, motosikletVT);
+            await CleanupOrphanBodyTypesAsync(context, vehicleTypes);
         }
 
         /// <summary>
         /// Yanlış VehicleType altındaki duplicate BodyType kayıtlarını temizlemeye çalışır (hata olursa atlar)
         /// </summary>
-        private static async Task CleanupOrphanBodyTypesAsync(Context context, VehicleType? otomobilVT, VehicleType? suvAraziVT, VehicleType? motosikletVT)
+        private static async Task CleanupOrphanBodyTypesAsync(Context context, IReadOnlyCollection<VehicleType> vehicleTypes)
         {
-            if (otomobilVT == null || suvAraziVT == null || motosikletVT == null) return;
-
             try
             {
-                var validVehicleTypeIds = new[] { otomobilVT.Id, suvAraziVT.Id, motosikletVT.Id };
+                var validVehicleTypeNames = new[]
+                {
+                    "Otomobil",
+                    "SUV & Arazi Araçları",
+                    "Motosiklet",
+                    "Elektrikli Otomobil",
+                    "Minivan & Panelvan",
+                    "Ticari Araçlar"
+                };
+
+                var validVehicleTypeIds = vehicleTypes
+                    .Where(vt => validVehicleTypeNames.Contains(vt.Name))
+                    .Select(vt => vt.Id)
+                    .ToArray();
+
+                if (validVehicleTypeIds.Length == 0)
+                    return;
+
                 var inClause = string.Join(", ", validVehicleTypeIds.Select(id => $"'{id}'"));
 
                 // Hiçbir tabloda referans edilmeyen orphan BodyType'ları sil
