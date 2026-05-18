@@ -3,22 +3,21 @@ using System.ComponentModel.DataAnnotations;
 namespace Core.DTOs.QuoteRequestDtos;
 
 /// <summary>
-/// Teklif talebi oluşturma (Kullanıcı formu gönderir)
+/// Teklif talebi olusturma.
 /// </summary>
 public class CreateQuoteRequestDto
 {
-    // Araç bilgileri
-    [Required(ErrorMessage = "Plaka gereklidir")]
+    public string RequestType { get; set; } = "Vehicle";
+
+    // Arac bilgileri
     [StringLength(20)]
-    public string Plate { get; set; } = string.Empty;
+    public string? Plate { get; set; }
 
-    [Required(ErrorMessage = "Marka gereklidir")]
     [StringLength(100)]
-    public string Brand { get; set; } = string.Empty;
+    public string? Brand { get; set; }
 
-    [Required(ErrorMessage = "Model gereklidir")]
     [StringLength(100)]
-    public string Model { get; set; } = string.Empty;
+    public string? Model { get; set; }
 
     [StringLength(10)]
     public string? Year { get; set; }
@@ -34,7 +33,48 @@ public class CreateQuoteRequestDto
 
     public string? Damage { get; set; }
 
-    // İletişim bilgileri
+    // Emlak bilgileri
+    public int? RealEstateCategory { get; set; }
+    public int? RealEstateListingType { get; set; }
+
+    [StringLength(200)]
+    public string? RealEstateTitle { get; set; }
+
+    [StringLength(100)]
+    public string? City { get; set; }
+
+    [StringLength(100)]
+    public string? District { get; set; }
+
+    [StringLength(100)]
+    public string? Neighborhood { get; set; }
+
+    [StringLength(500)]
+    public string? Address { get; set; }
+
+    public int? Size { get; set; }
+
+    [StringLength(50)]
+    public string? RoomCount { get; set; }
+
+    public int? BuildingAge { get; set; }
+
+    [StringLength(50)]
+    public string? OccupancyPermitStatus { get; set; }
+
+    [StringLength(100)]
+    public string? BusinessType { get; set; }
+
+    [StringLength(50)]
+    public string? LandZoningStatus { get; set; }
+
+    public decimal? DesiredMinPrice { get; set; }
+    public decimal? DesiredMaxPrice { get; set; }
+
+    [StringLength(1000)]
+    public string? Notes { get; set; }
+
+    // Iletisim bilgileri
     [Required(ErrorMessage = "Ad gereklidir")]
     [StringLength(50)]
     public string FirstName { get; set; } = string.Empty;
@@ -44,9 +84,9 @@ public class CreateQuoteRequestDto
     public string LastName { get; set; } = string.Empty;
 
     [Required(ErrorMessage = "Telefon gereklidir")]
-    [Phone(ErrorMessage = "Geçerli bir telefon numarası giriniz")]
+    [Phone(ErrorMessage = "Gecerli bir telefon numarasi giriniz")]
     public string Phone { get; set; } = string.Empty;
 
-    [EmailAddress(ErrorMessage = "Geçerli bir e-posta adresi giriniz")]
+    [EmailAddress(ErrorMessage = "Gecerli bir e-posta adresi giriniz")]
     public string? Email { get; set; }
 }

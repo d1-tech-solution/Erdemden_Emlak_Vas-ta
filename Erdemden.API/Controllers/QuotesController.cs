@@ -105,9 +105,14 @@ public class QuotesController : ControllerBase
         // Fotoğraf ve video sayı limitleri
         var photoCount = mediaFiles.Count(f => f.MediaType == "Photo");
         var videoCount = mediaFiles.Count(f => f.MediaType == "Video");
+        var quote = await _unitOfWork.Repository<QuoteRequest>().GetByIdAsync(quoteId);
+        if (quote == null)
+            return BadRequest(new { success = false, message = "Teklif talebi bulunamadı." });
 
-        if (photoCount > 10)
-            return BadRequest(new { success = false, message = "En fazla 10 fotoğraf yüklenebilir." });
+        var photoLimit = quote.RequestType == QuoteRequestType.RealEstate ? 20 : 10;
+
+        if (photoCount > photoLimit)
+            return BadRequest(new { success = false, message = $"En fazla {photoLimit} fotoğraf yüklenebilir." });
         if (videoCount > 3)
             return BadRequest(new { success = false, message = "En fazla 3 video yüklenebilir." });
 
@@ -334,19 +339,40 @@ public class QuotesController : ControllerBase
                 using var entryStream = entry.Open();
                 await entryStream.WriteAsync(media.Data);
             }
+            else if (!string.IsNullOrEmpty(media.FilePath))
+            {
+                var filePath = ResolveMediaFilePath(media.FilePath);
+                if (System.IO.File.Exists(filePath))
+                {
+                    var entry = archive.CreateEntry($"Fotograflar/{media.FileName}");
+                    using var entryStream = entry.Open();
+                    using var fileStream = System.IO.File.OpenRead(filePath);
+                    await fileStream.CopyToAsync(entryStream);
+                }
+            }
         }
 
         // Videolar - dosya sisteminden stream et
         foreach (var media in quote.Media.Where(m => m.MediaType == "Video"))
         {
-            if (!string.IsNullOrEmpty(media.FilePath) && System.IO.File.Exists(media.FilePath))
+            var filePath = string.IsNullOrEmpty(media.FilePath) ? null : ResolveMediaFilePath(media.FilePath);
+            if (!string.IsNullOrEmpty(filePath) && System.IO.File.Exists(filePath))
             {
                 var entry = archive.CreateEntry($"Videolar/{media.FileName}");
                 using var entryStream = entry.Open();
-                using var fileStream = System.IO.File.OpenRead(media.FilePath);
+                using var fileStream = System.IO.File.OpenRead(filePath);
                 await fileStream.CopyToAsync(entryStream);
             }
         }
+    }
+
+    private static string ResolveMediaFilePath(string filePath)
+    {
+        if (Path.IsPathRooted(filePath) && !filePath.StartsWith('/'))
+            return filePath;
+
+        var relativePath = filePath.TrimStart('/').Replace("/", Path.DirectorySeparatorChar.ToString());
+        return Path.Combine(Directory.GetCurrentDirectory(), relativePath);
     }
 }
 
