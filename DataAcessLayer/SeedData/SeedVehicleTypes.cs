@@ -9,8 +9,9 @@ namespace DataAcessLayer.SeedData
         private static readonly Dictionary<string, string[]> VehicleTypeBodyMap = new()
         {
             { "Otomobil", new[] { "Sedan", "Hatchback", "Station Wagon", "Coupe", "Cabrio", "Roadster" } },
-            { "SUV & Arazi Araçları", new[] { "SUV", "Pickup", "Crossover", "Arazi Aracı", "Minivan & Panelvan" } },
-            { "Motosiklet", new[] { "Scooter", "Maxi Scooter", "Naked", "Sport", "Touring", "Enduro / Adventure", "Chopper / Cruiser", "Cross / Motocross", "Cafe Racer / Scrambler", "Underbone / Cub", "Elektrikli", "Supermoto" } }
+            { "SUV & Arazi Araçları", new[] { "SUV", "Pickup", "Crossover", "Arazi Aracı" } },
+            { "Motosiklet", new[] { "Scooter", "Maxi Scooter", "Naked", "Sport", "Touring", "Enduro / Adventure", "Chopper / Cruiser", "Cross / Motocross", "Cafe Racer / Scrambler", "Underbone / Cub", "Elektrikli", "Supermoto" } },
+            { "Ticari Araçlar", new[] { "Minibüs & Midibüs", "Otobüs", "Kamyon & Kamyonet", "Çekici", "Dorse", "Römork", "Karoser & Üst Yapı", "Oto Kurtarıcı & Taşıyıcı", "Ticari Hat & Ticari Plaka", "Minivan", "Panelvan" } }
         };
 
         public static async Task SeedAsync(Context context)
@@ -92,6 +93,42 @@ namespace DataAcessLayer.SeedData
 
             if (added)
                 await context.SaveChangesAsync();
+        }
+
+        /// <summary>
+        /// "Minivan & Panelvan" gövde tipini kullanan araçları, yeni "Ticari Araçlar > Minivan" gövde tipine taşır
+        /// ve sonrasında eski kaydı siler. Idempotent — eski kayıt yoksa hiçbir şey yapmaz.
+        /// </summary>
+        public static async Task MigrateLegacyMinivanPanelvanAsync(Context context)
+        {
+            var legacyBodyType = await context.Set<BodyType>()
+                .FirstOrDefaultAsync(bt => bt.Name == "Minivan & Panelvan");
+
+            if (legacyBodyType == null)
+                return;
+
+            var ticariVehicleType = await context.Set<VehicleType>()
+                .FirstOrDefaultAsync(vt => vt.Name == "Ticari Araçlar");
+            if (ticariVehicleType == null)
+                return;
+
+            var targetBodyType = await context.Set<BodyType>()
+                .FirstOrDefaultAsync(bt => bt.VehicleTypeId == ticariVehicleType.Id && bt.Name == "Minivan");
+            if (targetBodyType == null)
+                return;
+
+            var affectedVehicles = await context.Set<Vehicle>()
+                .Where(v => v.BodyTypeId == legacyBodyType.Id)
+                .ToListAsync();
+
+            foreach (var vehicle in affectedVehicles)
+            {
+                vehicle.BodyTypeId = targetBodyType.Id;
+                vehicle.VehicleTypeId = ticariVehicleType.Id;
+            }
+
+            context.Set<BodyType>().Remove(legacyBodyType);
+            await context.SaveChangesAsync();
         }
     }
 }

@@ -12,6 +12,7 @@ namespace DataAcessLayer.SeedData
             // Lookup verilerini seed et (sıralama önemli - VehicleTypes önce olmalı çünkü BodyTypes'a bağlı)
             await SeedVehicleTypes.SeedAsync(context);
             await SeedVehicleTypes.EnsureBodyTypesAsync(context); // Eksik BodyType kayıtlarını oluştur
+            await SeedVehicleTypes.MigrateLegacyMinivanPanelvanAsync(context); // Eski "Minivan & Panelvan" -> "Ticari Araçlar > Minivan"
             await SeedBrands.SeedAsync(context);
             await SeedFuelTypes.SeedAsync(context);
             await SeedTransmissionTypes.SeedAsync(context);
