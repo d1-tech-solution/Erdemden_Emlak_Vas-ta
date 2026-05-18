@@ -17,6 +17,7 @@ secrets/
 *.suo
 *.user
 *.userosscache
+*.csproj.lscache
 *.sln.docstates
 
 # User-specific files (MonoDevelop/Xamarin Studio)
